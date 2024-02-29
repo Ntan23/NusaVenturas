@@ -3,7 +3,7 @@ guid: ecb774496d947654481094cf4ef71d60
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 171
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -80,7 +81,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 12
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,6 +101,30 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -107,10 +132,10 @@ TextureImporter:
       name: Tileset2_1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 206
-        width: 37
-        height: 100
+        x: 170
+        y: 341.3333
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,10 +153,10 @@ TextureImporter:
       name: Tileset2_2
       rect:
         serializedVersion: 2
-        x: 6
-        y: 106
-        width: 37
-        height: 100
+        x: 340
+        y: 341.3333
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +174,10 @@ TextureImporter:
       name: Tileset2_3
       rect:
         serializedVersion: 2
-        x: 6
-        y: 306
-        width: 37
-        height: 100
+        x: 0
+        y: 171.33333
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +195,10 @@ TextureImporter:
       name: Tileset2_4
       rect:
         serializedVersion: 2
-        x: 469
-        y: 306
-        width: 37
-        height: 100
+        x: 170
+        y: 171.33333
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +216,10 @@ TextureImporter:
       name: Tileset2_0
       rect:
         serializedVersion: 2
-        x: 469
-        y: 206
-        width: 37
-        height: 100
+        x: 0
+        y: 341.3333
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +237,10 @@ TextureImporter:
       name: Tileset2_5
       rect:
         serializedVersion: 2
-        x: 469
-        y: 106
-        width: 37
-        height: 100
+        x: 340
+        y: 171.33333
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,10 +258,10 @@ TextureImporter:
       name: Tileset2_6
       rect:
         serializedVersion: 2
-        x: 43
-        y: 306
-        width: 426
-        height: 100
+        x: 0
+        y: 1.3333282
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,10 +279,10 @@ TextureImporter:
       name: Tileset2_7
       rect:
         serializedVersion: 2
-        x: 43
-        y: 206
-        width: 426
-        height: 100
+        x: 170
+        y: 1.3333282
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,10 +300,10 @@ TextureImporter:
       name: Tileset2_8
       rect:
         serializedVersion: 2
-        x: 43
-        y: 106
-        width: 426
-        height: 100
+        x: 340
+        y: 1.3333282
+        width: 170.66667
+        height: 170.66667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
