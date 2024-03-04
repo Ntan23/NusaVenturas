@@ -7,6 +7,7 @@ public class FoodSO : ScriptableObject
 {
     public string foodName;
     public int foodID;
+    public int foodScore;
     public Sprite foodSprite;
     [TextArea(3,10)]
     public string foodIngredients;

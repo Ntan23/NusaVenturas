@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7f9f8bddbc07fe4290c7a7a93e5dbb7, type: 3}
-  m_Name: Pempek
+  m_Name: Rendang
   m_EditorClassIdentifier: 
-  foodName: Pempek
-  foodID: 2000
-  foodSprite: {fileID: -1574346069, guid: d32093ef5aad0b64fb13836870f97da0, type: 3}
-  foodIngredients: "Ingedients : \nDaging Ikan, Tepung, Saus Empek Empek"
+  foodName: Rendang
+  foodID: 1000
+  foodScore: 500
+  foodSprite: {fileID: 21300000, guid: dc20c090dd8914548b8a9daf81e0098c, type: 3}
+  foodIngredients: "Ingedients : \nDaging Sapi , Bumbu Rendang , Santan, Daun Jeruk,
+    Gula dan Garam"
