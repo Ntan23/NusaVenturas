@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Rendang
   m_EditorClassIdentifier: 
   foodName: Rendang
-  foodID: 1000
+  foodOrigin: Sumatera Barat
+  foodID: 2128
+  cookTime: 10
   foodScore: 500
   foodSprite: {fileID: 21300000, guid: dc20c090dd8914548b8a9daf81e0098c, type: 3}
-  foodIngredients: "Ingedients : \nDaging Sapi , Bumbu Rendang , Santan, Daun Jeruk,
-    Gula dan Garam"
+  foodIngredients: "- Daging Sapi\n- Bumbu Rendang\n- Garam\n- Gula\n- Daun Jeruk
+    \n- Santan"

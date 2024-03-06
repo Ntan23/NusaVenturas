@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Pempek
   m_EditorClassIdentifier: 
   foodName: Pempek
+  foodOrigin: Palembang
   foodID: 2000
+  cookTime: 10
   foodScore: 300
   foodSprite: {fileID: -1574346069, guid: d32093ef5aad0b64fb13836870f97da0, type: 3}
   foodIngredients: "Ingedients : \nDaging Ikan, Tepung, Saus Empek Empek"

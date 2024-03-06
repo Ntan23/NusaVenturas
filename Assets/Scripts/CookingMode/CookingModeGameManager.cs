@@ -13,6 +13,7 @@ public class CookingModeGameManager : MonoBehaviour
     [Header("For Order")]
     [SerializeField] private TextMeshProUGUI orderName;
     [SerializeField] private Image orderFoodImage;
+    [SerializeField] private TextMeshProUGUI foodOrigin;
     [SerializeField] private TextMeshProUGUI ingredients;
     private int currentOrderID;
 
