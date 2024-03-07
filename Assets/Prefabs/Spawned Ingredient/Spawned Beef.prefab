@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6034851824977862900}
   - component: {fileID: -2158741131540952292}
   m_Layer: 0
-  m_Name: Spawned Daging Sapi
+  m_Name: Spawned Beef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

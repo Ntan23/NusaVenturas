@@ -10,12 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7f9f8bddbc07fe4290c7a7a93e5dbb7, type: 3}
-  m_Name: Pempek
+  m_Name: Eurimoo
   m_EditorClassIdentifier: 
-  foodName: Pempek
-  foodOrigin: Palembang
-  foodID: 2000
-  cookTime: 10
-  foodScore: 300
-  foodSprite: {fileID: -1574346069, guid: d32093ef5aad0b64fb13836870f97da0, type: 3}
-  foodIngredients: "Ingedients : \nDaging Ikan, Tepung, Saus Empek Empek"
+  foodName: Eurimoo
+  foodOrigin: Papua Tengah
+  foodID: 3044
+  cookTime: 5
+  foodScore: 350
+  foodSprite: {fileID: 21300000, guid: 14982264477841a4293cafc0d7f64bd9, type: 3}
+  foodIngredients: '- Pisang
+
+    - Tepung Sagu
+
+    - Kelapa Parut
+
+    - Gula
+
+    -
+    Garam'

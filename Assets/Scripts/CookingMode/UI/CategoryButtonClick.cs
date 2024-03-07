@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class CategoryButtonClick : MonoBehaviour
 {
-    public Color selectedColor;
-    public CategoryButtonBlueprint[] buttons;
+    [SerializeField] private Color selectedColor;
+    [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private CategoryButtonBlueprint[] buttons;
 
     public void ClickButton(int index)
     {
@@ -18,6 +19,7 @@ public class CategoryButtonClick : MonoBehaviour
             {
                 buttons[i].button.GetComponent<Image>().color = selectedColor;
                 buttons[i].target.SetActive(true);
+                scrollRect.content = buttons[i].target.GetComponent<RectTransform>();
             }
 
             if(!buttons[i].isClicked) 
