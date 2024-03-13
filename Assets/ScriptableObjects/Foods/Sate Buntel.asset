@@ -18,13 +18,5 @@ MonoBehaviour:
   cookTime: 8
   foodScore: 450
   foodSprite: {fileID: 21300000, guid: eb5144288184abb43b31290b936e5282, type: 3}
-  foodIngredients: '- Pisang
-
-    - Tepung Sagu
-
-    - Kelapa Parut
-
-    - Gula
-
-    -
-    Garam'
+  foodIngredients: "- Daging Kambing\n- Bawang merah\n- Garam\n- Merica \n- Kecap
+    Manis\n- Kecap Asin\n- Margarin"
