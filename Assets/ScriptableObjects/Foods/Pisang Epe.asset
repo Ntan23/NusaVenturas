@@ -17,7 +17,7 @@ MonoBehaviour:
   foodID: 4040
   cookTime: 4
   foodScore: 300
-  foodSprite: {fileID: 21300000, guid: ef94435a230c18d418064d5a74b43834, type: 3}
+  foodSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
   foodIngredients: '- Pisang
 
     - Margarin

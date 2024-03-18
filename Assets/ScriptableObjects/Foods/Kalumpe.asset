@@ -17,7 +17,7 @@ MonoBehaviour:
   foodID: 3137
   cookTime: 7
   foodScore: 400
-  foodSprite: {fileID: -1574346069, guid: d32093ef5aad0b64fb13836870f97da0, type: 3}
+  foodSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
   foodIngredients: '- Daun Singkong
 
     - Bumbu Kalumpe

@@ -6,6 +6,15 @@ using TMPro;
 
 public class CookingModeGameManager : MonoBehaviour
 {
+    #region Singleton
+    public static CookingModeGameManager instance;
+    void Awake()
+    {
+        if(instance == null) instance = this;
+    }
+    #endregion
+
+    #region Variables
     [SerializeField] private FoodSO[] foods;
     private int randomIndex;
 
@@ -14,6 +23,7 @@ public class CookingModeGameManager : MonoBehaviour
     [SerializeField] private Image orderFoodImage;
     [SerializeField] private TextMeshProUGUI orderFoodOrigin;
     [SerializeField] private TextMeshProUGUI ingredients;
+    [SerializeField] private TextMeshProUGUI orderScoreText;
     private int currentOrderID;
     private FoodSO currentFoodOrder;
 
@@ -27,25 +37,53 @@ public class CookingModeGameManager : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private GameObject cookButton;
+    [SerializeField] private Image timerBar;
+    [SerializeField] private float maxTime;
+    private float currentTime;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highscoreText;
+    private int highscore;
 
     private int currentScore;
     private int score;
+    #endregion
 
     void Start()
     {
+        highscore = PlayerPrefs.GetInt("Highscore", 0);
+        currentTime = maxTime;
+
+        scoreText.text = "Score : " + currentScore.ToString();
+        highscoreText.text = "Highscore : " + highscore.ToString();
+
         GenerateNewOrder();
+    }
+
+    void Update()
+    {
+        currentTime -= Time.deltaTime;
+
+        UpdateTimerBar();
+
+        if(currentTime <= 0)
+        {
+            Debug.LogError("You Have Complete The Game");
+            return;
+        }
     }
 
     public void GenerateNewOrder()
     {
         randomIndex = Random.Range(0, foods.Length);
 
-        orderName.text = foods[randomIndex].foodName;
-        orderFoodOrigin.text = foods[randomIndex].foodOrigin;
-        orderFoodImage.sprite = foods[randomIndex].foodSprite;
-        ingredients.text = foods[randomIndex].foodIngredients;
-
         currentFoodOrder = foods[randomIndex];
+
+        orderName.text = currentFoodOrder.foodName;
+        orderFoodOrigin.text = currentFoodOrder.foodOrigin;
+        orderFoodImage.sprite = currentFoodOrder.foodSprite;
+        ingredients.text = currentFoodOrder.foodIngredients;
+        orderScoreText.text = "Food Score : " + currentFoodOrder.foodScore.ToString();
+
         Debug.Log(currentFoodOrder.foodID);
     }
 
@@ -72,10 +110,26 @@ public class CookingModeGameManager : MonoBehaviour
     
     public void TrashFood()
     {
-        for(int i = addedIngredientParent.childCount - 1; i >= 0; i--) Destroy(addedIngredientParent.GetChild(i).gameObject);
+        if(ingredientCount > 0)
+        {
+            currentScore -= ingredientCount * 50;
+            if(currentScore <= 0) currentScore = 0;
 
-        currentOrderID = 0;
-        ingredientCount = 0;
+            scoreText.text = "Score : " + currentScore.ToString();
+
+            for(int i = ingredientCount - 1; i >= 0; i--) Destroy(addedIngredientParent.GetChild(i).gameObject);
+
+            currentOrderID = 0;
+            ingredientCount = 0;
+        }
+    }
+
+    private void UpdateTimerBar()
+    {
+        timerBar.fillAmount = currentTime / maxTime;
+
+        if(timerBar.fillAmount <= 0.5f && timerBar.fillAmount > 0.1f) timerBar.color = Color.yellow;
+        if(timerBar.fillAmount <= 0.1f) timerBar.color = Color.red;
     }
 
     IEnumerator Cook()
@@ -86,6 +140,16 @@ public class CookingModeGameManager : MonoBehaviour
         yield return new WaitForSeconds(currentFoodOrder.cookTime);
         Debug.Log("Finish Cooking");
         currentScore += currentFoodOrder.foodScore;
+        scoreText.text = "Score : " + currentScore.ToString();
+
+        if(currentScore > highscore) 
+        {
+            PlayerPrefs.SetInt("Highscore", currentScore);
+            highscoreText.text = "Highscore : " + currentScore.ToString();
+
+            highscore = currentScore;
+        }
+
         cookButton.SetActive(true);
         GenerateNewOrder();
     }

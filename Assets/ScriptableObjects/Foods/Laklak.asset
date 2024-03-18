@@ -17,7 +17,7 @@ MonoBehaviour:
   foodID: 5071
   cookTime: 6
   foodScore: 360
-  foodSprite: {fileID: 21300000, guid: e4f4f7534801f98459eb6d233ed7e2b8, type: 3}
+  foodSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
   foodIngredients: '- Tepung Beras
 
     - Tepung Ketan
