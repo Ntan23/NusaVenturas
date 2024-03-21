@@ -35,6 +35,10 @@ public class CookingModeGameManager : MonoBehaviour
     private int ingredientCount;
     [SerializeField] private int maxIngredient;
 
+    [Header("Cooking Indicator")]
+    [SerializeField] private GameObject cookingIndicator;
+    private Animator cookingAnimator;
+
     [Header("Others")]
     [SerializeField] private GameObject cookButton;
     [SerializeField] private Image timerBar;
@@ -43,7 +47,7 @@ public class CookingModeGameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
     private int highscore;
-
+    private int completedOrder;
     private int currentScore;
     private int score;
     #endregion
@@ -52,6 +56,7 @@ public class CookingModeGameManager : MonoBehaviour
     {
         highscore = PlayerPrefs.GetInt("Highscore", 0);
         currentTime = maxTime;
+        cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
         scoreText.text = "Score : " + currentScore.ToString();
         highscoreText.text = "Highscore : " + highscore.ToString();
@@ -112,7 +117,7 @@ public class CookingModeGameManager : MonoBehaviour
     {
         if(ingredientCount > 0)
         {
-            currentScore -= ingredientCount * 50;
+            currentScore -= ingredientCount * 10;
             if(currentScore <= 0) currentScore = 0;
 
             scoreText.text = "Score : " + currentScore.ToString();
@@ -137,8 +142,18 @@ public class CookingModeGameManager : MonoBehaviour
         Debug.Log("Cooking");
         TrashFood();
         cookButton.SetActive(false);
-        yield return new WaitForSeconds(currentFoodOrder.cookTime);
+        LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 0.0f, 1.0f, 0.2f).setOnComplete(() => 
+        {
+            cookingAnimator.enabled = true;
+            cookingIndicator.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        });
+        yield return new WaitForSeconds(4.0f);
         Debug.Log("Finish Cooking");
+        LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 1.0f, 0.0f, 0.2f).setOnComplete(() => 
+        {
+            cookingAnimator.enabled = false;
+            cookingIndicator.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        });
         currentScore += currentFoodOrder.foodScore;
         scoreText.text = "Score : " + currentScore.ToString();
 
@@ -151,6 +166,19 @@ public class CookingModeGameManager : MonoBehaviour
         }
 
         cookButton.SetActive(true);
+        completedOrder++;
+
+        if(completedOrder % 2 == 0)
+        {
+            currentTime += 10;
+            UpdateTimerBar();
+        }
+
         GenerateNewOrder();
+    }
+
+    private void UpdateCookingIndicatorAlpha(float alpha)
+    {
+        cookingIndicator.GetComponent<CanvasGroup>().alpha = alpha;
     }
 }

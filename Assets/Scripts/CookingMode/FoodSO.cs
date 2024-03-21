@@ -8,7 +8,6 @@ public class FoodSO : ScriptableObject
     public string foodName;
     public string foodOrigin;
     public int foodID;
-    public float cookTime;
     public int foodScore;
     public Sprite foodSprite;
     [TextArea(3,10)]
