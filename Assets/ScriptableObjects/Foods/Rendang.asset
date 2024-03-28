@@ -15,8 +15,7 @@ MonoBehaviour:
   foodName: Rendang
   foodOrigin: Sumatera Barat
   foodID: 2128
-  cookTime: 10
-  foodScore: 500
-  foodSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodScore: 300
+  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
   foodIngredients: "- Daging Sapi\n- Bumbu Rendang\n- Garam\n- Gula\n- Daun Jeruk
     \n- Santan"

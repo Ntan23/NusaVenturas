@@ -7,6 +7,8 @@ TagManager:
   - MovingPlatform
   - Examine
   - Lever
+  - PickUp
+  - Enemy
   layers:
   - Default
   - TransparentFX

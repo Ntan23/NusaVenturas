@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform groundCheckCollider;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform indicatorText;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -145,11 +146,13 @@ public class PlayerMovement : MonoBehaviour
         if(facingRight && dir < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            indicatorText.localScale = new Vector3(-1, 1, 1);
             facingRight = false;
         }
         else if(!facingRight && dir > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            indicatorText.localScale = new Vector3(1, 1, 1);
             facingRight = true;
         }
 
@@ -162,4 +165,9 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(groundCheckCollider.position, groundCheckRadius);
     } 
+
+    public bool GetIsAirborne()
+    {
+        return isAirborne;
+    }
 }

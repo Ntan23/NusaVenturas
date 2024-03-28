@@ -23,6 +23,7 @@ public class CookingModeGameManager : MonoBehaviour
     [SerializeField] private Image orderFoodImage;
     [SerializeField] private TextMeshProUGUI orderFoodOrigin;
     [SerializeField] private TextMeshProUGUI ingredients;
+    [SerializeField] private Image orderFoodIngredients;
     [SerializeField] private TextMeshProUGUI orderScoreText;
     private int currentOrderID;
     private FoodSO currentFoodOrder;
@@ -86,7 +87,8 @@ public class CookingModeGameManager : MonoBehaviour
         orderName.text = currentFoodOrder.foodName;
         orderFoodOrigin.text = currentFoodOrder.foodOrigin;
         orderFoodImage.sprite = currentFoodOrder.foodSprite;
-        ingredients.text = currentFoodOrder.foodIngredients;
+        //ingredients.text = currentFoodOrder.foodIngredients;
+        orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
         orderScoreText.text = "Food Score : " + currentFoodOrder.foodScore.ToString();
 
         Debug.Log(currentFoodOrder.foodID);

@@ -15,9 +15,8 @@ MonoBehaviour:
   foodName: Kalumpe
   foodOrigin: Kalimantan Tengah
   foodID: 3137
-  cookTime: 7
-  foodScore: 400
-  foodSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodScore: 300
+  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
   foodIngredients: '- Daun Singkong
 
     - Bumbu Kalumpe

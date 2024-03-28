@@ -22,6 +22,7 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Others")]
     [SerializeField] private GameObject interactText;
     [SerializeField] private GameObject examineText;
+    [SerializeField] private GameObject pickUpText;
     #endregion
 
     void Start()
@@ -57,6 +58,7 @@ public class PlayerInteraction : MonoBehaviour
             detectedObject = null;
             examineText.SetActive(false);
             interactText.SetActive(false);
+            pickUpText.SetActive(false);
             return false;
         }
         
@@ -76,18 +78,27 @@ public class PlayerInteraction : MonoBehaviour
             case "Examine" :
                 examineText.SetActive(true);
                 interactText.SetActive(false);
+                pickUpText.SetActive(false);
 
                 if(isExamining) examineText.SetActive(false);
                 
                 break;
+            case "PickUp" :
+                examineText.SetActive(false);
+                interactText.SetActive(false);
+                pickUpText.SetActive(true);
+
+                break;
             default :
                 interactText.SetActive(true);
                 examineText.SetActive(false);
+                pickUpText.SetActive(false);
 
                 if(isExamining)
                 {
                     interactText.SetActive(false);
                     examineText.SetActive(false);
+                    pickUpText.SetActive(false);
                 }
 
                 break;

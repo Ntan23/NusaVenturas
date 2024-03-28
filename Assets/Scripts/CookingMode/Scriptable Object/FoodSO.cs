@@ -12,4 +12,5 @@ public class FoodSO : ScriptableObject
     public Sprite foodSprite;
     [TextArea(3,10)]
     public string foodIngredients;
+    public Sprite foodIngredientsSprite;
 }

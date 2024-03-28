@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
 {
     #region Variables
     private enum InteractionType{
-        Lever, Examine
+        Lever, Examine, PickUp
     }
 
     [Header("Attributes")]
@@ -35,6 +35,9 @@ public class Item : MonoBehaviour
             case InteractionType.Lever :
                 this.tag = "Lever";
                 break; 
+            case InteractionType.PickUp :
+                this.tag = "PickUp";
+                break;
             default :
                 break;
         }
@@ -60,7 +63,6 @@ public class Item : MonoBehaviour
                 playerInteraction.ExamineItem(this);
                 break; 
             default :
-                
                 break;
         }
 
