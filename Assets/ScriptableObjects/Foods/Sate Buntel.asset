@@ -19,3 +19,4 @@ MonoBehaviour:
   foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
   foodIngredients: "- Daging Kambing\n- Bawang merah\n- Margarin\n- Garam\n- Merica
     \n- Kecap Manis\n- Kecap Asin"
+  foodIngredientsSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
