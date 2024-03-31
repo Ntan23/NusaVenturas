@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CookingModeGameManager : MonoBehaviour
+public class CookingModeGameManager : MonoBehaviour, IData
 {
     #region Singleton
     public static CookingModeGameManager instance;
@@ -55,14 +55,24 @@ public class CookingModeGameManager : MonoBehaviour
 
     void Start()
     {
-        highscore = PlayerPrefs.GetInt("Highscore", 0);
+        //highscore = PlayerPrefs.GetInt("Highscore", 0);
         currentTime = maxTime;
         cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
-        scoreText.text = "Score : " + currentScore.ToString();
         highscoreText.text = "Highscore : " + highscore.ToString();
+        scoreText.text = "Score : " + currentScore.ToString();
 
         GenerateNewOrder();
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        this.highscore = gameData.highScore;
+    }
+
+    public void SaveData(GameData gameData)
+    {
+        gameData.highScore = this.highscore;
     }
 
     void Update()
@@ -87,8 +97,8 @@ public class CookingModeGameManager : MonoBehaviour
         orderName.text = currentFoodOrder.foodName;
         orderFoodOrigin.text = currentFoodOrder.foodOrigin;
         orderFoodImage.sprite = currentFoodOrder.foodSprite;
-        //ingredients.text = currentFoodOrder.foodIngredients;
-        orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
+        ingredients.text = currentFoodOrder.foodIngredients;
+        //orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
         orderScoreText.text = "Food Score : " + currentFoodOrder.foodScore.ToString();
 
         Debug.Log(currentFoodOrder.foodID);
@@ -161,7 +171,7 @@ public class CookingModeGameManager : MonoBehaviour
 
         if(currentScore > highscore) 
         {
-            PlayerPrefs.SetInt("Highscore", currentScore);
+            //PlayerPrefs.SetInt("Highscore", currentScore);
             highscoreText.text = "Highscore : " + currentScore.ToString();
 
             highscore = currentScore;
@@ -183,4 +193,5 @@ public class CookingModeGameManager : MonoBehaviour
     {
         cookingIndicator.GetComponent<CanvasGroup>().alpha = alpha;
     }
+
 }

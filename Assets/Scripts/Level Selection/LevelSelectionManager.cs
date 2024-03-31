@@ -35,14 +35,15 @@ public class LevelSelectionManager : MonoBehaviour
 
     void Start()
     {
-        //levelUnlocked = PlayerPrefs.GetInt("LevelUnlocked", 1);
+        levelUnlocked = PlayerPrefs.GetInt("LevelUnlocked", 1);
 
         isFirstTime = true;
 
-        // for(int i = 0; i < buttons.Length; i++)
-        // {
-        //     if(i < levelUnlocked) buttons[i].interactable = true;
-        // }
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            if(i < levelUnlocked) buttons[i].interactable = true;
+            else if(i >= levelUnlocked) buttons[i].interactable = false;
+        }
     }
 
 
@@ -58,11 +59,10 @@ public class LevelSelectionManager : MonoBehaviour
         {
             buttons[index].GetComponent<Image>().color = selectedButtonColor;
             
-            LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring().setOnComplete(() =>
-            {
-                LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseSpring().setOnComplete(() => {
-                    playButton.interactable = true;
-                });
+            LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+            
+            LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseInOutExpo().setOnComplete(() => {
+                playButton.interactable = true;
 
                 tempIndex = index;
                 isFirstTime = false;
@@ -78,11 +78,10 @@ public class LevelSelectionManager : MonoBehaviour
             
             buttons[index].GetComponent<Image>().color = selectedButtonColor;
 
-            LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring().setOnComplete(() =>
-            {
-                LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseSpring().setOnComplete(() => {
-                    playButton.interactable = true;
-                });
+            LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+
+            LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseInOutExpo().setOnComplete(() => {
+                playButton.interactable = true;
                 
                 tempIndex = index;
             });
