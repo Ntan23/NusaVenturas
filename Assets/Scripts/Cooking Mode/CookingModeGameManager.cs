@@ -109,7 +109,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(ingredientCount < maxIngredient)
         {
             currentOrderID += ingredientSO.ingredientID;
-            Debug.Log(currentOrderID);
 
             addedIngredient = Instantiate(ingredientSO.ingredientSprite, addedIngredientParent);
             spawnedIngredient = Instantiate(ingredientSO.spawnedIngredient, ingredientSpawnPosition);
@@ -121,6 +120,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     public void CookFood()
     {
+        Debug.Log(currentOrderID);
+
         if(currentOrderID != currentFoodOrder.foodID) Debug.Log("Wrong Ingredients");
         else if(currentOrderID == currentFoodOrder.foodID) StartCoroutine(Cook());
     }

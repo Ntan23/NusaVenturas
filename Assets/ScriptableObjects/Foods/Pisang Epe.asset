@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Pisang Epe
   foodOrigin: Sulawesi Selatan
-  foodID: 4040
+  foodID: 4063
   foodScore: 300
   foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
   foodIngredients: '- Pisang

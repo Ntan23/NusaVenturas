@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LevelSelectionManager : MonoBehaviour
+public class LevelSelectionManager : MonoBehaviour, IData
 {
     #region Singleton
     public static LevelSelectionManager instance;
@@ -19,7 +19,10 @@ public class LevelSelectionManager : MonoBehaviour
     [SerializeField] private FoodSO[] foods;
     private int levelUnlocked;
     private int tempIndex;
+    [SerializeField] private string[] recipeId;
     private bool isFirstTime;
+    private bool collected;
+    private bool[] recipeCollected;
 
     [Header("For Information Panel")]
     [SerializeField] private TextMeshProUGUI foodOriginText;
@@ -46,6 +49,23 @@ public class LevelSelectionManager : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData gameData)
+    {
+        recipeCollected = new bool[recipeId.Length];
+        
+        for(int i = 0; i < recipeId.Length; i++)
+        {
+            gameData.recipeCollected.TryGetValue(recipeId[i],out collected);
+            
+            if(collected) recipeCollected[i] = true;
+            if(!collected) recipeCollected[i] = false;
+        }
+    }
+
+    public void SaveData(GameData gameData)
+    {
+        Debug.Log("Save");
+    }
 
     public void SelectLevel(int index)
     {
@@ -87,4 +107,5 @@ public class LevelSelectionManager : MonoBehaviour
             });
         }
     }
+
 }
