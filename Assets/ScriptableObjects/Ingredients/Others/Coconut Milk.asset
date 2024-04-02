@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Coconut Milk
   ingredientID: 1002
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: d9548c5753073f14aacae8666b071e26, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: ff155bfe4c7626348884ba37d7a3d964, type: 3}

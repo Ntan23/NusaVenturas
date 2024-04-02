@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Banana
   ingredientID: 1007
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: 956304b213aeefc47b704ddfe099d7da, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: 79004da3660f92142819d91fd697eaea, type: 3}

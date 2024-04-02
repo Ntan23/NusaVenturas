@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Cassava Leaves
   ingredientID: 1005
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: 82b17fe8333d7ec47a56c6103a28d647, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: eb80c2dd6d0dd0c468edcfa52b04e468, type: 3}

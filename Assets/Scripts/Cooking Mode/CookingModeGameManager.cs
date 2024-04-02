@@ -55,7 +55,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     void Start()
     {
-        //highscore = PlayerPrefs.GetInt("Highscore", 0);
         currentTime = maxTime;
         cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
@@ -65,16 +64,10 @@ public class CookingModeGameManager : MonoBehaviour, IData
         GenerateNewOrder();
     }
 
-    public void LoadData(GameData gameData)
-    {
-        this.highscore = gameData.highScore;
-    }
-
-    public void SaveData(GameData gameData)
-    {
-        gameData.highScore = this.highscore;
-    }
-
+    public void LoadData(GameData gameData) => this.highscore = gameData.highScore;
+    
+    public void SaveData(GameData gameData) => gameData.highScore = this.highscore;
+    
     void Update()
     {
         currentTime -= Time.deltaTime;
@@ -97,8 +90,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
         orderName.text = currentFoodOrder.foodName;
         orderFoodOrigin.text = currentFoodOrder.foodOrigin;
         orderFoodImage.sprite = currentFoodOrder.foodSprite;
-        ingredients.text = currentFoodOrder.foodIngredients;
-        //orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
+        //ingredients.text = currentFoodOrder.foodIngredients;
+        orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
         orderScoreText.text = "Food Score : " + currentFoodOrder.foodScore.ToString();
 
         Debug.Log(currentFoodOrder.foodID);
@@ -172,7 +165,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
         if(currentScore > highscore) 
         {
-            //PlayerPrefs.SetInt("Highscore", currentScore);
             highscoreText.text = "Highscore : " + currentScore.ToString();
 
             highscore = currentScore;
@@ -190,9 +182,5 @@ public class CookingModeGameManager : MonoBehaviour, IData
         GenerateNewOrder();
     }
 
-    private void UpdateCookingIndicatorAlpha(float alpha)
-    {
-        cookingIndicator.GetComponent<CanvasGroup>().alpha = alpha;
-    }
-
+    private void UpdateCookingIndicatorAlpha(float alpha) => cookingIndicator.GetComponent<CanvasGroup>().alpha = alpha;
 }

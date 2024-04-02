@@ -16,7 +16,7 @@ MonoBehaviour:
   foodOrigin: Bali
   foodID: 5071
   foodScore: 300
-  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
+  foodSprite: {fileID: 21300000, guid: 9891de9c84b97f843b622e831de63704, type: 3}
   foodIngredients: '- Tepung Beras
 
     - Tepung Ketan
@@ -29,4 +29,4 @@ MonoBehaviour:
     - Garam
 
     - Kelapa Parut'
-  foodIngredientsSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodIngredientsSprite: {fileID: 21300000, guid: 558137dfc38c14449a340947d42d5c78, type: 3}

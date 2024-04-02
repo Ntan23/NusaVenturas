@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Sago Flour
   ingredientID: 1008
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: 4e449bc92fdd1834e9e10f41d5ea6142, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: 78292c855da295f40aad6ce08e8064a8, type: 3}

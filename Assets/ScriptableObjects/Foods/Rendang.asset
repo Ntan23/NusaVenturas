@@ -16,7 +16,7 @@ MonoBehaviour:
   foodOrigin: Sumatera Barat
   foodID: 2128
   foodScore: 300
-  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
+  foodSprite: {fileID: 21300000, guid: 4e89ab1d9334bd340815f7b1ab3a6a42, type: 3}
   foodIngredients: "- Daging Sapi\n- Bumbu Rendang\n- Garam\n- Gula\n- Daun Jeruk
     \n- Santan"
-  foodIngredientsSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodIngredientsSprite: {fileID: 21300000, guid: 6810980eeb9c011428c37e0d746a27e4, type: 3}

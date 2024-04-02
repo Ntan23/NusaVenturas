@@ -16,7 +16,7 @@ MonoBehaviour:
   foodOrigin: Jawa Tengah
   foodID: 2068
   foodScore: 350
-  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
+  foodSprite: {fileID: 21300000, guid: 45790e9641a8fb245a338dffc38454b6, type: 3}
   foodIngredients: "- Daging Kambing\n- Bawang merah\n- Margarin\n- Garam\n- Merica
     \n- Kecap Manis\n- Kecap Asin"
-  foodIngredientsSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodIngredientsSprite: {fileID: 21300000, guid: aca521c35e5015448a5dfab37a17eac4, type: 3}

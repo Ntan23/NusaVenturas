@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Pandan Leaves
   ingredientID: 1012
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: 50ade9367d7eb9f42bf8eb7aae809dd6, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: 0d1b99cec2ac8b846aa16bf6152a4b26, type: 3}

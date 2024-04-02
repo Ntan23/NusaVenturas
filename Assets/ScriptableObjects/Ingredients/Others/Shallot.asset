@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Shallot
   ingredientID: 1003
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: ae60c80e107051048a29bad82829ca5e, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: ca5b627272841cb4ba0ba4a4307ad759, type: 3}

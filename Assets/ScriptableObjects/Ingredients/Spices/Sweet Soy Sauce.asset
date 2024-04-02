@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Sweet Soy Sauce
   ingredientID: 14
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: 837834a0e5f7d2048b3ea9f3044bdfbc, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: 4a64f9130bd554844af1aa930031334d, type: 3}

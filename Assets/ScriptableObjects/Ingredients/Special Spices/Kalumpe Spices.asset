@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Kalumpe Spices
   ingredientID: 102
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: b7a924eae411d1044b29a2113b538721, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: bc56ccdb4f51e7b439ca59ccb6713e8a, type: 3}

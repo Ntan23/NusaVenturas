@@ -16,7 +16,7 @@ MonoBehaviour:
   foodOrigin: Sulawesi Selatan
   foodID: 4063
   foodScore: 300
-  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
+  foodSprite: {fileID: 21300000, guid: fec7f7b9d6461574b90027a2c4d8c018, type: 3}
   foodIngredients: '- Pisang
 
     - Margarin
@@ -29,4 +29,4 @@ MonoBehaviour:
 
     -
     Daun Pandan'
-  foodIngredientsSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodIngredientsSprite: {fileID: 21300000, guid: 7adb02118fae8f745bfa4c575e24207f, type: 3}

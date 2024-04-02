@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Sugar
   ingredientID: 12
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: 934ea8e9a10d77340beb8997f4cc7a17, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: bdc54dc8b9fa7854cb354601996dd7d5, type: 3}

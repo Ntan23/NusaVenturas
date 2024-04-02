@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectionManager : MonoBehaviour, IData
 {
@@ -34,11 +35,12 @@ public class LevelSelectionManager : MonoBehaviour, IData
     [SerializeField] private Button[] buttons;
     [SerializeField] private Color32 selectedButtonColor;
     [SerializeField] private Button playButton;
+    private TextMeshProUGUI playButtonText;
     #endregion
 
     void Start()
     {
-        levelUnlocked = PlayerPrefs.GetInt("LevelUnlocked", 1);
+        playButtonText = playButton.gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
         isFirstTime = true;
 
@@ -51,6 +53,8 @@ public class LevelSelectionManager : MonoBehaviour, IData
 
     public void LoadData(GameData gameData)
     {
+        this.levelUnlocked = gameData.levelUnlocked;
+
         recipeCollected = new bool[recipeId.Length];
         
         for(int i = 0; i < recipeId.Length; i++)
@@ -72,8 +76,20 @@ public class LevelSelectionManager : MonoBehaviour, IData
         panel.transform.SetParent(buttons[index].gameObject.transform);
 
         foodOriginText.text = foods[index].foodOrigin;
-        foodNameText.text = foods[index].foodName;
         foodImage.sprite = foods[index].foodSprite;
+
+        if(recipeCollected[index]) 
+        {
+            foodNameText.text = foods[index].foodName;
+            foodImage.color = Color.white;
+            playButtonText.text = "Re-Adventure";
+        }
+        else if(!recipeCollected[index])
+        {
+            foodNameText.text = "?????";
+            foodImage.color = Color.black;
+            playButtonText.text = "Find Recipe";
+        }
 
         if(isFirstTime)
         {
@@ -108,4 +124,5 @@ public class LevelSelectionManager : MonoBehaviour, IData
         }
     }
 
+    public void GoToLevel() => SceneManager.LoadSceneAsync("Level" + (tempIndex+1).ToString());
 }

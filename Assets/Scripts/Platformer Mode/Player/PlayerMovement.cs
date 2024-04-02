@@ -29,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
     private bool coyoteJump;
     private bool isAirborne;
     private PlayerInteraction playerInteraction;
+    private GameManager gm;
     #endregion
 
     void Start()
     {
+        gm = GameManager.instance;
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerInteraction = GetComponent<PlayerInteraction>();
@@ -45,7 +48,13 @@ public class PlayerMovement : MonoBehaviour
         if(playerInteraction.GetIsExamining()) return;
         
         horizontalValue = Input.GetAxisRaw("Horizontal");
-        
+
+        if(!gm.GetCanControl()) 
+        {
+            horizontalValue = 0;
+            return;
+        }
+         
         if(Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
         
         if(Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
@@ -71,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     
         Collider2D collider = Physics2D.OverlapCircle(groundCheckCollider.position, groundCheckRadius, groundLayer);
         
-        if (collider != null)
+        if(collider != null)
         {
             isGrounded = true;
             if (!wasGrounded)
@@ -80,8 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 multipleJump = false;
             } 
 
-            if(collider.CompareTag("MovingPlatform")) transform.parent = collider.transform;
-            
+            if(collider.CompareTag("MovingPlatform")) transform.parent = collider.transform;       
         }    
         else
         {
@@ -136,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
     void Move(float dir)
     {
         #region Move & Run
+
         float xVal = dir * speed * 100 * Time.fixedDeltaTime;
  
         if (isRunning) xVal *= runSpeedModifier;

@@ -1,13 +1,14 @@
 [System.Serializable]
 public class GameData
 {
-    public int levelsUnlocked;
+    public int levelUnlocked;
     public int highScore;
+    public int recipeCount;
     public SerializableDictionary<string,bool> recipeCollected;
 
     public GameData()
     {
-        levelsUnlocked = 1;
+        levelUnlocked = 1;
         highScore = 0;
         recipeCollected = new SerializableDictionary<string,bool>();
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   foodOrigin: Papua Tengah
   foodID: 3044
   foodScore: 250
-  foodSprite: {fileID: 21300000, guid: 92e40b6410d95c645bad6862df6999c0, type: 3}
+  foodSprite: {fileID: 21300000, guid: 18e237984eda6af41ab558b00637b853, type: 3}
   foodIngredients: '- Pisang
 
     - Tepung Sagu
@@ -27,4 +27,4 @@ MonoBehaviour:
 
     -
     Garam'
-  foodIngredientsSprite: {fileID: 21300000, guid: a8b4fd8435a40224ab238187332164b4, type: 3}
+  foodIngredientsSprite: {fileID: 21300000, guid: 8710677a8fce2344e935afd416603ff5, type: 3}

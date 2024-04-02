@@ -23,10 +23,14 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject interactText;
     [SerializeField] private GameObject examineText;
     [SerializeField] private GameObject pickUpText;
+
+    private GameManager gm;
     #endregion
 
     void Start()
     {
+        gm = GameManager.instance;
+        
         examineWindow.SetActive(false);
         examineText.SetActive(false);
         interactText.SetActive(false);
@@ -34,6 +38,8 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     { 
+        if(!gm.GetCanControl()) return;
+
         if(DetectObjects())
         {
             if(Input.GetKeyDown(KeyCode.E)) detectedObject.GetComponent<Item>().InteractObject();

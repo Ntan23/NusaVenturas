@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Chicken Egg
   ingredientID: 1009
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: c619b4f4aeab5f64b9160691bc3b26fc, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: 5d2a3ff7d8d54ab4aafa8f85b1fd304a, type: 3}

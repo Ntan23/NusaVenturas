@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Glutinous Rice Flour
   ingredientID: 1013
-  ingredientSprite: {fileID: 6479800764345961582, guid: 9066280bddd38244cabe0c6e05ab9a98, type: 3}
-  spawnedIngredient: {fileID: 2017668650550478721, guid: a760dbafdfbe37847a61147fb3a1b88a, type: 3}
+  ingredientSprite: {fileID: 6479800764345961582, guid: cd0774e3a0f5a3b46bcfb47a752d19f5, type: 3}
+  spawnedIngredient: {fileID: 2017668650550478721, guid: 0ad676b257fae444581772bb8d342540, type: 3}
