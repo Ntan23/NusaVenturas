@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour, IData
     private GameObject player;
     private Vector3 intialPosition;
     private bool canControl;
+    private bool isComplete;
     [SerializeField] private int levelIndex;
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject recipeWindow;
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour, IData
 
     public void SaveData(GameData gameData) 
     {
-        if(levelIndex == gameData.levelUnlocked) gameData.levelUnlocked++;
+        if(levelIndex == gameData.levelUnlocked && isComplete) gameData.levelUnlocked++;
     }
     
 
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour, IData
 
     public void GoToNextLevel()
     {
+        canControl = false;
+        isComplete = true;
+
         if(levelIndex < 6) 
         {
             LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));

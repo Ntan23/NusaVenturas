@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if(other.CompareTag("Enemy") && playerMovement.GetIsAirborne()) 
         {
-            rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
             other.gameObject.SetActive(false);
         }
     }

@@ -128,11 +128,16 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
             scoreText.text = "Score : " + currentScore.ToString();
 
-            for(int i = ingredientCount - 1; i >= 0; i--) Destroy(addedIngredientParent.GetChild(i).gameObject);
-
-            currentOrderID = 0;
-            ingredientCount = 0;
+            ResetIngredients();
         }
+    }
+
+    private void ResetIngredients()
+    {
+        for(int i = ingredientCount - 1; i >= 0; i--) Destroy(addedIngredientParent.GetChild(i).gameObject);
+
+        currentOrderID = 0;
+        ingredientCount = 0;
     }
 
     private void UpdateTimerBar()
@@ -146,14 +151,14 @@ public class CookingModeGameManager : MonoBehaviour, IData
     IEnumerator Cook()
     {
         Debug.Log("Cooking");
-        TrashFood();
+        ResetIngredients();
         cookButton.SetActive(false);
         LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 0.0f, 1.0f, 0.2f).setOnComplete(() => 
         {
             cookingAnimator.enabled = true;
             cookingIndicator.GetComponent<CanvasGroup>().blocksRaycasts = true;
         });
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(3.0f);
         Debug.Log("Finish Cooking");
         LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 1.0f, 0.0f, 0.2f).setOnComplete(() => 
         {
