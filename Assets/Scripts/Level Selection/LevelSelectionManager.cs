@@ -20,7 +20,6 @@ public class LevelSelectionManager : MonoBehaviour, IData
     [SerializeField] private FoodSO[] foods;
     private int levelUnlocked;
     private int tempIndex;
-    [SerializeField] private string[] recipeId;
     private bool isFirstTime;
     private bool collected;
     private bool[] recipeCollected;
@@ -55,11 +54,11 @@ public class LevelSelectionManager : MonoBehaviour, IData
     {
         this.levelUnlocked = gameData.levelUnlocked;
 
-        recipeCollected = new bool[recipeId.Length];
+        recipeCollected = new bool[foods.Length];
         
-        for(int i = 0; i < recipeId.Length; i++)
+        for(int i = 0; i < foods.Length; i++)
         {
-            gameData.recipeCollected.TryGetValue(recipeId[i],out collected);
+            gameData.recipeCollected.TryGetValue(foods[i].foodRecipeID,out collected);
             
             if(collected) recipeCollected[i] = true;
             if(!collected) recipeCollected[i] = false;
@@ -76,7 +75,7 @@ public class LevelSelectionManager : MonoBehaviour, IData
         panel.transform.SetParent(buttons[index].gameObject.transform);
 
         foodOriginText.text = foods[index].foodOrigin;
-        foodImage.sprite = foods[index].foodSprite;
+        foodImage.sprite = foods[index].foodSpriteWithFrame;
 
         if(recipeCollected[index]) 
         {

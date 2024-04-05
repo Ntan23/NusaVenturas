@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Eurimoo
   m_EditorClassIdentifier: 
   foodName: Eurimoo
+  foodRecipeID: 6
   foodOrigin: Papua Tengah
   foodID: 3044
-  foodScore: 250
-  foodSprite: {fileID: 21300000, guid: 18e237984eda6af41ab558b00637b853, type: 3}
+  foodPrice: 2
+  foodSpriteWithFrame: {fileID: 21300000, guid: 18e237984eda6af41ab558b00637b853, type: 3}
+  foodSpriteWithoutFrame: {fileID: 21300000, guid: 658ee3f993febca488a87c380074cdb0, type: 3}
   foodIngredients: '- Pisang
 
     - Tepung Sagu
@@ -28,3 +30,4 @@ MonoBehaviour:
     -
     Garam'
   foodIngredientsSprite: {fileID: 21300000, guid: 8710677a8fce2344e935afd416603ff5, type: 3}
+  isUnlocked: 0

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Rendang
   m_EditorClassIdentifier: 
   foodName: Rendang
+  foodRecipeID: 1
   foodOrigin: Sumatera Barat
   foodID: 2128
-  foodScore: 300
-  foodSprite: {fileID: 21300000, guid: 4e89ab1d9334bd340815f7b1ab3a6a42, type: 3}
+  foodPrice: 2
+  foodSpriteWithFrame: {fileID: 21300000, guid: 4e89ab1d9334bd340815f7b1ab3a6a42, type: 3}
+  foodSpriteWithoutFrame: {fileID: 21300000, guid: 5fa72b9a8c7a9d344b664f2f90369e79, type: 3}
   foodIngredients: "- Daging Sapi\n- Bumbu Rendang\n- Garam\n- Gula\n- Daun Jeruk
     \n- Santan"
   foodIngredientsSprite: {fileID: 21300000, guid: 6810980eeb9c011428c37e0d746a27e4, type: 3}
+  isUnlocked: 0

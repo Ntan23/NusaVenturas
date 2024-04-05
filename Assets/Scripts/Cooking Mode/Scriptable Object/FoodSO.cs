@@ -6,11 +6,14 @@ using UnityEngine;
 public class FoodSO : ScriptableObject
 {
     public string foodName;
+    public string foodRecipeID;
     public string foodOrigin;
     public int foodID;
-    public int foodScore;
-    public Sprite foodSprite;
+    public int foodPrice;
+    public Sprite foodSpriteWithFrame;
+    public Sprite foodSpriteWithoutFrame;
     [TextArea(3,10)]
     public string foodIngredients;
     public Sprite foodIngredientsSprite;
+    public bool isUnlocked;
 }

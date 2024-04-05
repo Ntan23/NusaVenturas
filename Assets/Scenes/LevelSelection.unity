@@ -154,10 +154,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foods:
   - {fileID: 11400000, guid: 406415977f045564092dbc20df381561, type: 2}
+  - {fileID: 11400000, guid: 14c5960f81b2eb842b669412af0c938a, type: 2}
   - {fileID: 11400000, guid: 846049101d39aec41b8bd1ba6ebcc30c, type: 2}
-  recipeId:
-  - 1
-  - 2
+  - {fileID: 11400000, guid: 67c04816ae5af2d498b532afa17b1643, type: 2}
+  - {fileID: 11400000, guid: 3e0cf3036249e3442b0bdc5ab6f427d0, type: 2}
+  - {fileID: 11400000, guid: 2dbe16b5c6421b4498027d3dd3b4dd95, type: 2}
   foodOriginText: {fileID: 1878042718}
   foodNameText: {fileID: 1855179577}
   foodImage: {fileID: 1267245756}

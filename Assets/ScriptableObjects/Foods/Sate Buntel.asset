@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Sate Buntel
   m_EditorClassIdentifier: 
   foodName: Sate Buntel
+  foodRecipeID: 2
   foodOrigin: Jawa Tengah
   foodID: 2068
-  foodScore: 350
-  foodSprite: {fileID: 21300000, guid: 45790e9641a8fb245a338dffc38454b6, type: 3}
+  foodPrice: 2
+  foodSpriteWithFrame: {fileID: 21300000, guid: 45790e9641a8fb245a338dffc38454b6, type: 3}
+  foodSpriteWithoutFrame: {fileID: 21300000, guid: 6eb398c8607a68849b2d64f57d215034, type: 3}
   foodIngredients: "- Daging Kambing\n- Bawang merah\n- Margarin\n- Garam\n- Merica
     \n- Kecap Manis\n- Kecap Asin"
   foodIngredientsSprite: {fileID: 21300000, guid: aca521c35e5015448a5dfab37a17eac4, type: 3}
+  isUnlocked: 0

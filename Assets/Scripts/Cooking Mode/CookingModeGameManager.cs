@@ -15,8 +15,15 @@ public class CookingModeGameManager : MonoBehaviour, IData
     #endregion
 
     #region Variables
+    [SerializeField] private bool endlessMode;
     [SerializeField] private FoodSO[] foods;
+    private List<FoodSO> availableFoods;
     private int randomIndex;
+    private bool collected;
+    private bool isStarted;
+    [Header("Trial")]
+    private float coinCount; 
+    private float initialTimeForTrial;
 
     [Header("For Order")]
     [SerializeField] private TextMeshProUGUI orderName;
@@ -24,7 +31,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
     [SerializeField] private TextMeshProUGUI orderFoodOrigin;
     [SerializeField] private TextMeshProUGUI ingredients;
     [SerializeField] private Image orderFoodIngredients;
-    [SerializeField] private TextMeshProUGUI orderScoreText;
+    [SerializeField] private TextMeshProUGUI orderFoodPriceText;
     private int currentOrderID;
     private FoodSO currentFoodOrder;
 
@@ -43,33 +50,91 @@ public class CookingModeGameManager : MonoBehaviour, IData
     [Header("Others")]
     [SerializeField] private GameObject cookButton;
     [SerializeField] private Image timerBar;
-    [SerializeField] private float maxTime;
+    [SerializeField] private GameObject blackScreen;
     private float currentTime;
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI highscoreText;
-    private int highscore;
-    private int completedOrder;
-    private int currentScore;
-    private int score;
+    private float cookingSpeed;
+
+    [Header("Endless")]
+    [SerializeField] private float maxTime;
+    [SerializeField] private TextMeshProUGUI currentProfitText;
+    [SerializeField] private TextMeshProUGUI highestProfitText;
+    [Header("Trial")]
+    [SerializeField] private TextMeshProUGUI coinCountText;
+    [SerializeField] private GameObject completedFoodImage;
+    private int highestProfit;
+    private int currentProfit;
     #endregion
 
     void Start()
     {
-        currentTime = maxTime;
         cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
-        highscoreText.text = "Highscore : " + highscore.ToString();
-        scoreText.text = "Score : " + currentScore.ToString();
+        if(endlessMode)
+        {
+            highestProfitText.text = "Highest Profit : " + highestProfit.ToString();
+            currentProfitText.text = "Current Profit : " + currentProfit.ToString();
+        }
+
+        if(!endlessMode)
+        {
+            maxTime = initialTimeForTrial;
+            coinCountText.text = string.Format("0.0", coinCount);
+        }
+        
+        currentTime = maxTime;
+        
+        for(int i = 0; i < foods.Length; i++) 
+        {
+            if(foods[i].isUnlocked) availableFoods.Add(foods[i]);
+            if(!foods[i].isUnlocked) continue;
+        }
 
         GenerateNewOrder();
+        
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.5f).setOnComplete(() =>
+        {
+            blackScreen.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            isStarted = true;
+        });
     }
 
-    public void LoadData(GameData gameData) => this.highscore = gameData.highScore;
+    public void LoadData(GameData gameData) 
+    {
+        if(endlessMode) this.highestProfit = gameData.highestProfit;
+        if(!endlessMode) 
+        {
+            this.coinCount = gameData.coinCount;
+            this.initialTimeForTrial = gameData.initialTimeForTrial;
+        }
+
+        this.cookingSpeed = gameData.cookingSpeed;
+
+        availableFoods = new List<FoodSO>();
+        
+        for(int i = 0; i < foods.Length; i++)
+        {
+            gameData.recipeCollected.TryGetValue(foods[i].foodRecipeID,out collected);
+            
+            if(collected) foods[i].isUnlocked = true;
+            if(!collected) foods[i].isUnlocked = false;
+        }
+    }
     
-    public void SaveData(GameData gameData) => gameData.highScore = this.highscore;
+    public void SaveData(GameData gameData) 
+    {
+        if(endlessMode) gameData.highestProfit = this.highestProfit;
+        if(!endlessMode) 
+        {
+            gameData.coinCount = this.coinCount;
+            gameData.initialTimeForTrial = this.initialTimeForTrial;
+        }
+    }
     
     void Update()
     {
+        if(!isStarted) return;
+
         currentTime -= Time.deltaTime;
 
         UpdateTimerBar();
@@ -83,16 +148,16 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     public void GenerateNewOrder()
     {
-        randomIndex = Random.Range(0, foods.Length);
+        randomIndex = Random.Range(0, availableFoods.Count);
 
-        currentFoodOrder = foods[randomIndex];
+        currentFoodOrder = availableFoods[randomIndex];
 
         orderName.text = currentFoodOrder.foodName;
         orderFoodOrigin.text = currentFoodOrder.foodOrigin;
-        orderFoodImage.sprite = currentFoodOrder.foodSprite;
+        orderFoodImage.sprite = currentFoodOrder.foodSpriteWithFrame;
         //ingredients.text = currentFoodOrder.foodIngredients;
         orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
-        orderScoreText.text = "Food Score : " + currentFoodOrder.foodScore.ToString();
+        orderFoodPriceText.text = "Food Price : " + currentFoodOrder.foodPrice.ToString();
 
         Debug.Log(currentFoodOrder.foodID);
     }
@@ -115,7 +180,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
     {
         Debug.Log(currentOrderID);
 
-        if(currentOrderID != currentFoodOrder.foodID) Debug.Log("Wrong Ingredients");
+        if(currentOrderID != currentFoodOrder.foodID) TrashFood();
         else if(currentOrderID == currentFoodOrder.foodID) StartCoroutine(Cook());
     }
     
@@ -123,10 +188,21 @@ public class CookingModeGameManager : MonoBehaviour, IData
     {
         if(ingredientCount > 0)
         {
-            currentScore -= ingredientCount * 10;
-            if(currentScore <= 0) currentScore = 0;
+            if(endlessMode)
+            {
+                currentProfit --;
+                if(currentProfit < 0) currentProfit = 0;
+                
+                currentProfitText.text = "Score : " + currentProfit.ToString();
+            }
 
-            scoreText.text = "Score : " + currentScore.ToString();
+            if(!endlessMode) 
+            {
+                coinCount--;
+                if(coinCount < 0) coinCount = 0;
+
+                coinCountText.text = string.Format("0.0", coinCount);
+            }
 
             ResetIngredients();
         }
@@ -158,34 +234,52 @@ public class CookingModeGameManager : MonoBehaviour, IData
             cookingAnimator.enabled = true;
             cookingIndicator.GetComponent<CanvasGroup>().blocksRaycasts = true;
         });
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(cookingSpeed);
         Debug.Log("Finish Cooking");
         LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 1.0f, 0.0f, 0.2f).setOnComplete(() => 
         {
             cookingAnimator.enabled = false;
             cookingIndicator.GetComponent<CanvasGroup>().blocksRaycasts = false;
         });
-        currentScore += currentFoodOrder.foodScore;
-        scoreText.text = "Score : " + currentScore.ToString();
 
-        if(currentScore > highscore) 
+        if(endlessMode)
         {
-            highscoreText.text = "Highscore : " + currentScore.ToString();
+            currentProfit += currentFoodOrder.foodPrice;
+            currentProfitText.text = "Current Profit : " + currentProfit.ToString();
 
-            highscore = currentScore;
+            if(currentProfit > highestProfit) 
+            {
+                highestProfitText.text = "Highest Profit : " + currentProfit.ToString();
+
+                highestProfit = currentProfit;
+            }
         }
 
-        cookButton.SetActive(true);
-        completedOrder++;
+        if(!endlessMode) coinCount += currentFoodOrder.foodPrice;
 
-        if(completedOrder % 2 == 0)
+        completedFoodImage.GetComponent<SpriteRenderer>().sprite = currentFoodOrder.foodSpriteWithoutFrame;
+
+        LeanTween.scale(completedFoodImage, Vector3.one, 0.3f).setOnComplete(() => 
         {
-            currentTime += 10;
-            UpdateTimerBar();
-        }
-
-        GenerateNewOrder();
+            StartCoroutine(ShowFood());
+        });
     }
 
     private void UpdateCookingIndicatorAlpha(float alpha) => cookingIndicator.GetComponent<CanvasGroup>().alpha = alpha;
+    private void UpdateBlackscreenAlpha(float alpha) => blackScreen.GetComponent<CanvasGroup>().alpha = alpha;
+    
+    IEnumerator ShowFood()
+    {
+        yield return new WaitForSeconds(0.2f);
+        LeanTween.moveX(completedFoodImage, -12.0f, 0.5f).setOnComplete(() => 
+        {
+            GenerateNewOrder();
+            completedFoodImage.transform.localScale = Vector3.zero;
+            completedFoodImage.transform.position = Vector3.zero;
+
+            cookButton.SetActive(true);
+            currentTime += 10;
+            UpdateTimerBar();
+        });
+    }
 }
