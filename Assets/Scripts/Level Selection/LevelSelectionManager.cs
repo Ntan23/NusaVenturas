@@ -23,6 +23,8 @@ public class LevelSelectionManager : MonoBehaviour, IData
     private bool isFirstTime;
     private bool collected;
     private bool[] recipeCollected;
+    private bool[] isInTrialMode;
+    private bool[] fromTrialMode;
 
     [Header("For Information Panel")]
     [SerializeField] private TextMeshProUGUI foodOriginText;
@@ -54,6 +56,13 @@ public class LevelSelectionManager : MonoBehaviour, IData
     {
         this.levelUnlocked = gameData.levelUnlocked;
 
+        this.isInTrialMode = new bool[gameData.isInTrialMode.Length];
+        this.fromTrialMode = new bool[gameData.fromTrialMode.Length];
+
+        for(int i = 0; i < gameData.isInTrialMode.Length; i++) this.isInTrialMode[i] = gameData.isInTrialMode[i];
+
+        for(int i = 0; i < gameData.fromTrialMode.Length; i++) this.fromTrialMode[i] = gameData.fromTrialMode[i];
+
         recipeCollected = new bool[foods.Length];
         
         for(int i = 0; i < foods.Length; i++)
@@ -81,7 +90,10 @@ public class LevelSelectionManager : MonoBehaviour, IData
         {
             foodNameText.text = foods[index].foodName;
             foodImage.color = Color.white;
-            playButtonText.text = "Re-Adventure";
+            
+            if(isInTrialMode[index]) playButtonText.text = "Continue";
+            else if(fromTrialMode[index])  playButtonText.text = "Continue";
+            else if(levelUnlocked > index) playButtonText.text = "Re-Adventure";
         }
         else if(!recipeCollected[index])
         {
@@ -123,5 +135,9 @@ public class LevelSelectionManager : MonoBehaviour, IData
         }
     }
 
-    public void GoToLevel() => SceneManager.LoadSceneAsync("Level" + (tempIndex+1).ToString());
+    public void GoToLevel() 
+    {
+        if(isInTrialMode[tempIndex]) SceneManager.LoadSceneAsync(1);
+        else SceneManager.LoadSceneAsync("Level" + (tempIndex + 1).ToString());
+    }
 }

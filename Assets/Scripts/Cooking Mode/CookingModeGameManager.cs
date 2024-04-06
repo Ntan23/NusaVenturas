@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CookingModeGameManager : MonoBehaviour, IData
 {
@@ -24,6 +25,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
     [Header("Trial")]
     private float coinCount; 
     private float initialTimeForTrial;
+    private int levelIndex;
+    private bool isCompleted;
 
     [Header("For Order")]
     [SerializeField] private TextMeshProUGUI orderName;
@@ -78,7 +81,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(!endlessMode)
         {
             maxTime = initialTimeForTrial;
-            coinCountText.text = string.Format("0.0", coinCount);
+            coinCountText.text = coinCount.ToString("0.0");
         }
         
         currentTime = maxTime;
@@ -105,6 +108,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(!endlessMode) 
         {
             this.coinCount = gameData.coinCount;
+            this.levelIndex = gameData.levelIndex;
             this.initialTimeForTrial = gameData.initialTimeForTrial;
         }
 
@@ -126,8 +130,14 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(endlessMode) gameData.highestProfit = this.highestProfit;
         if(!endlessMode) 
         {
-            gameData.coinCount = this.coinCount;
-            gameData.initialTimeForTrial = this.initialTimeForTrial;
+            if(this.isCompleted)
+            {
+                gameData.coinCount = this.coinCount;
+                gameData.initialTimeForTrial = this.initialTimeForTrial;
+                gameData.isInTrialMode[levelIndex - 1] = false;
+                gameData.fromTrialMode[levelIndex - 1] = true;
+            } 
+            else if(!this.isCompleted) gameData.isInTrialMode[levelIndex - 1] = true;
         }
     }
     
@@ -141,25 +151,29 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
         if(currentTime <= 0)
         {
-            Debug.LogError("You Have Complete The Game");
+            Debug.Log("You Have Complete The Game");
+            CompleteGame();
             return;
         }
     }
 
     public void GenerateNewOrder()
     {
-        randomIndex = Random.Range(0, availableFoods.Count);
+        if(availableFoods != null)
+        {
+            randomIndex = Random.Range(0, availableFoods.Count);
 
-        currentFoodOrder = availableFoods[randomIndex];
+            currentFoodOrder = availableFoods[randomIndex];
 
-        orderName.text = currentFoodOrder.foodName;
-        orderFoodOrigin.text = currentFoodOrder.foodOrigin;
-        orderFoodImage.sprite = currentFoodOrder.foodSpriteWithFrame;
-        //ingredients.text = currentFoodOrder.foodIngredients;
-        orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
-        orderFoodPriceText.text = "Food Price : " + currentFoodOrder.foodPrice.ToString();
+            orderName.text = currentFoodOrder.foodName;
+            orderFoodOrigin.text = currentFoodOrder.foodOrigin;
+            orderFoodImage.sprite = currentFoodOrder.foodSpriteWithFrame;
+            //ingredients.text = currentFoodOrder.foodIngredients;
+            orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
+            orderFoodPriceText.text = "Food Price : " + currentFoodOrder.foodPrice.ToString();
 
-        Debug.Log(currentFoodOrder.foodID);
+            Debug.Log(currentFoodOrder.foodID);
+        }
     }
 
     public void AddIngredient(IngredientSO ingredientSO)
@@ -201,7 +215,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
                 coinCount--;
                 if(coinCount < 0) coinCount = 0;
 
-                coinCountText.text = string.Format("0.0", coinCount);
+                coinCountText.text = coinCount.ToString("0.0");
             }
 
             ResetIngredients();
@@ -255,7 +269,12 @@ public class CookingModeGameManager : MonoBehaviour, IData
             }
         }
 
-        if(!endlessMode) coinCount += currentFoodOrder.foodPrice;
+        if(!endlessMode) 
+        {
+            coinCount += currentFoodOrder.foodPrice;
+
+            coinCountText.text = coinCount.ToString("0.0");
+        }
 
         completedFoodImage.GetComponent<SpriteRenderer>().sprite = currentFoodOrder.foodSpriteWithoutFrame;
 
@@ -263,6 +282,17 @@ public class CookingModeGameManager : MonoBehaviour, IData
         {
             StartCoroutine(ShowFood());
         });
+    }
+
+    private void CompleteGame()
+    {
+        if(!endlessMode)
+        {
+            isCompleted = true;
+            initialTimeForTrial += 10.0f;
+
+            SceneManager.LoadScene("Level" + levelIndex.ToString());
+        }
     }
 
     private void UpdateCookingIndicatorAlpha(float alpha) => cookingIndicator.GetComponent<CanvasGroup>().alpha = alpha;
@@ -278,7 +308,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
             completedFoodImage.transform.position = Vector3.zero;
 
             cookButton.SetActive(true);
-            currentTime += 10;
+            if(endlessMode) currentTime += 10;
             UpdateTimerBar();
         });
     }

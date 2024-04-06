@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelection.unity
     guid: 6c0d133f4c4aea94fa7834a2071954d5
   - enabled: 1
+    path: Assets/Scenes/TrialCookingMode.unity
+    guid: daf21e98d64ac2540b4eeafaff1ab6aa
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 7cda50413745a724a8f2e2a63e57af10
-  - enabled: 1
-    path: Assets/Scenes/TrialCookingMode.unity
-    guid: daf21e98d64ac2540b4eeafaff1ab6aa
   - enabled: 1
     path: Assets/Scenes/EndlessCookingMode.unity
     guid: 4a2bac7898dd6154d9ffdcd119176400

@@ -19,30 +19,65 @@ public class GameManager : MonoBehaviour, IData
     private Vector3 intialPosition;
     private bool canControl;
     private bool isComplete;
+    private bool fromTrialMode;
+    private float posX, posY, posZ;
     [SerializeField] private int levelIndex;
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject recipeWindow;
+    [SerializeField] private GameObject nextLevelDoor;
     #endregion
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        intialPosition = player.transform.position;
+
+        if(!fromTrialMode) nextLevelDoor.SetActive(false);
+        else if(fromTrialMode) 
+        {
+            player.transform.localPosition = new Vector3(posX, posY, posZ);
+            nextLevelDoor.SetActive(true);
+        }
+        
+        intialPosition = player.transform.localPosition;
 
         LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
     }
 
     public void LoadData(GameData gameData)
     {
-        Debug.Log("Load");
+        this.fromTrialMode = gameData.fromTrialMode[this.levelIndex - 1];
+        
+        Debug.Log(this.fromTrialMode);
+        Debug.Log(new Vector3(gameData.posX, gameData.posY, gameData.posZ));
+
+        if(gameData.fromTrialMode[this.levelIndex - 1]) 
+        {
+            this.posX = gameData.posX;
+            this.posY = gameData.posY;
+            this.posZ = gameData.posZ;
+        }
     }
 
     public void SaveData(GameData gameData) 
     {
-        if(levelIndex == gameData.levelUnlocked && isComplete) gameData.levelUnlocked++;
+        gameData.levelIndex = this.levelIndex;
+
+        if(this.levelIndex == gameData.levelUnlocked && this.isComplete) 
+        {
+            gameData.levelUnlocked++;
+            gameData.fromTrialMode[this.levelIndex - 1] = false;
+        }
+
+        if(gameData.fromTrialMode[this.levelIndex - 1])
+        {
+            gameData.posX = player.transform.localPosition.x;
+            gameData.posY = player.transform.localPosition.y;
+            gameData.posZ = player.transform.localPosition.z;
+
+            Debug.Log(new Vector3(gameData.posX, gameData.posY, gameData.posZ));
+        }
     }
     
-
     public void Respawn()
     {
         StartCoroutine(DelayControl());
@@ -81,6 +116,11 @@ public class GameManager : MonoBehaviour, IData
         }
     }
 
+    private void GoToTrialMode()
+    {
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadSceneAsync(1));
+    }
+
     private void UpdateRecipeWindowAlpha(float alpha) => recipeWindow.GetComponent<CanvasGroup>().alpha = alpha; 
 
     private void UpdateBlackscreenAlpha(float alpha) => blackScreen.GetComponent<CanvasGroup>().alpha = alpha;
@@ -91,6 +131,7 @@ public class GameManager : MonoBehaviour, IData
         LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 1.0f, 0.0f, 0.3f).setOnComplete(() => 
         {
             canControl = true;
+            GoToTrialMode();
         });
     }
 }

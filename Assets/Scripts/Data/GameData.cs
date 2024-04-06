@@ -10,8 +10,12 @@ public class GameData
     
     #region PlatformerMode
     public int levelUnlocked;
+    public float posX, posY, posZ;
+    public int levelIndex;
     public int collectedRecipeCount;
     public SerializableDictionary<string,bool> recipeCollected;
+    public bool[] isInTrialMode;
+    public bool[] fromTrialMode;
     #endregion
 
     public GameData()
@@ -22,7 +26,13 @@ public class GameData
         highestProfit = 0;
         
         levelUnlocked = 1;
+        levelIndex = 1;
+        posX = 0.0f;
+        posY = 0.0f;
+        posZ = 0.0f;
         collectedRecipeCount = 0;
         recipeCollected = new SerializableDictionary<string,bool>();
+        isInTrialMode = new bool[6];
+        fromTrialMode = new bool[6];
     }
 }
