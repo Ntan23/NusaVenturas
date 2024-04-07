@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelIndex: 1
+  player: {fileID: 6789862433032428725}
   blackScreen: {fileID: 926311373}
   recipeWindow: {fileID: 1438139528}
   nextLevelDoor: {fileID: 150890972}
@@ -7666,6 +7667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
+  playerTransform: {fileID: 6789862433032428724}
 --- !u!1 &1386299551
 GameObject:
   m_ObjectHideFlags: 0

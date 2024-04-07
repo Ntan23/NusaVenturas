@@ -15,13 +15,13 @@ public class GameManager : MonoBehaviour, IData
     #endregion
 
     #region Variables
-    private GameObject player;
     private Vector3 intialPosition;
     private bool canControl;
     private bool isComplete;
     private bool fromTrialMode;
     private float posX, posY, posZ;
     [SerializeField] private int levelIndex;
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject recipeWindow;
     [SerializeField] private GameObject nextLevelDoor;
@@ -29,33 +29,30 @@ public class GameManager : MonoBehaviour, IData
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
 
         if(!fromTrialMode) nextLevelDoor.SetActive(false);
-        else if(fromTrialMode) 
+        if(fromTrialMode) 
         {
-            player.transform.localPosition = new Vector3(posX, posY, posZ);
+            player.transform.localPosition = new Vector3(this.posX, this.posY, this.posZ);
             nextLevelDoor.SetActive(true);
         }
         
         intialPosition = player.transform.localPosition;
-
-        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
     }
 
     public void LoadData(GameData gameData)
     {
-        this.fromTrialMode = gameData.fromTrialMode[this.levelIndex - 1];
-        
-        Debug.Log(this.fromTrialMode);
-        Debug.Log(new Vector3(gameData.posX, gameData.posY, gameData.posZ));
+        Debug.Log(gameData.fromTrialMode[this.levelIndex - 1]);
 
-        if(gameData.fromTrialMode[this.levelIndex - 1]) 
+        if(gameData.fromTrialMode[this.levelIndex - 1])
         {
             this.posX = gameData.posX;
             this.posY = gameData.posY;
             this.posZ = gameData.posZ;
         }
+
+        this.fromTrialMode = gameData.fromTrialMode[this.levelIndex - 1];
     }
 
     public void SaveData(GameData gameData) 
@@ -66,15 +63,6 @@ public class GameManager : MonoBehaviour, IData
         {
             gameData.levelUnlocked++;
             gameData.fromTrialMode[this.levelIndex - 1] = false;
-        }
-
-        if(gameData.fromTrialMode[this.levelIndex - 1])
-        {
-            gameData.posX = player.transform.localPosition.x;
-            gameData.posY = player.transform.localPosition.y;
-            gameData.posZ = player.transform.localPosition.z;
-
-            Debug.Log(new Vector3(gameData.posX, gameData.posY, gameData.posZ));
         }
     }
     
@@ -118,7 +106,7 @@ public class GameManager : MonoBehaviour, IData
 
     private void GoToTrialMode()
     {
-        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadSceneAsync(1));
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(1));
     }
 
     private void UpdateRecipeWindowAlpha(float alpha) => recipeWindow.GetComponent<CanvasGroup>().alpha = alpha; 
@@ -128,7 +116,7 @@ public class GameManager : MonoBehaviour, IData
     IEnumerator ViewRecipe()
     {
         yield return new WaitForSeconds(1.0f);
-        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 1.0f, 0.0f, 0.3f).setOnComplete(() => 
+        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 1.0f, 0.0f, 0.4f).setOnComplete(() => 
         {
             canControl = true;
             GoToTrialMode();

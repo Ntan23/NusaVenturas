@@ -6,18 +6,20 @@ public class Recipe : MonoBehaviour, IData
 {
     [SerializeField] private string id;
     private bool collected = false;
+    private bool flag;
     private int collectedRecipeCount;
-    private Transform playerTransform;
+    [SerializeField] private Transform playerTransform;
     private float posX, posY, posZ;
-    
-    void Start() => playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    
 
     public void LoadData(GameData gameData) 
     {
         gameData.recipeCollected.TryGetValue(id,out collected);
 
-        if(collected) this.gameObject.SetActive(false);
+        if(collected) 
+        {
+            this.gameObject.SetActive(false);
+            flag = true;
+        }
 
         this.collectedRecipeCount = gameData.collectedRecipeCount;
     }
@@ -27,12 +29,15 @@ public class Recipe : MonoBehaviour, IData
         if(gameData.recipeCollected.ContainsKey(id)) gameData.recipeCollected.Remove(id);
         
         gameData.recipeCollected.Add(id,collected);
-
+   
         gameData.collectedRecipeCount = this.collectedRecipeCount;
-
-        gameData.posX = this.posX;
-        gameData.posY = this.posY;
-        gameData.posZ = this.posZ;
+        
+        if(!flag) 
+        {
+            gameData.posX = this.posX;
+            gameData.posY = this.posY;
+            gameData.posZ = this.posZ;    
+        }
     }
 
     public void PickUpRecipe()
@@ -41,8 +46,8 @@ public class Recipe : MonoBehaviour, IData
         collectedRecipeCount++;
         this.gameObject.SetActive(false);
 
-        posX = playerTransform.localPosition.x;
-        posY = playerTransform.localPosition.y;
-        posZ = playerTransform.localPosition.z;
+        this.posX = playerTransform.localPosition.x;
+        this.posY = playerTransform.localPosition.y;
+        this.posZ = playerTransform.localPosition.z;
     }
 }

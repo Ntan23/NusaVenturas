@@ -9,8 +9,8 @@ public class GameData
     #endregion
     
     #region PlatformerMode
-    public int levelUnlocked;
     public float posX, posY, posZ;
+    public int levelUnlocked;
     public int levelIndex;
     public int collectedRecipeCount;
     public SerializableDictionary<string,bool> recipeCollected;
@@ -25,11 +25,11 @@ public class GameData
         cookingSpeed = 3.0f;
         highestProfit = 0;
         
-        levelUnlocked = 1;
-        levelIndex = 1;
         posX = 0.0f;
         posY = 0.0f;
         posZ = 0.0f;
+        levelUnlocked = 1;
+        levelIndex = 1;
         collectedRecipeCount = 0;
         recipeCollected = new SerializableDictionary<string,bool>();
         isInTrialMode = new bool[6];

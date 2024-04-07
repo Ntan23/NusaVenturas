@@ -137,7 +137,7 @@ public class LevelSelectionManager : MonoBehaviour, IData
 
     public void GoToLevel() 
     {
-        if(isInTrialMode[tempIndex]) SceneManager.LoadSceneAsync(1);
-        else SceneManager.LoadSceneAsync("Level" + (tempIndex + 1).ToString());
+        if(isInTrialMode[tempIndex]) SceneManager.LoadScene(1);
+        else SceneManager.LoadScene("Level" + (tempIndex + 1).ToString());
     }
 }
