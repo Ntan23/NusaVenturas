@@ -6,6 +6,6 @@ public class Traps : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player")) other.GetComponent<PlayerHealth>().LoseLive();
+        if(other.CompareTag("Player") && !other.GetComponent<PlayerHealth>().GetIsInvulnerable()) other.GetComponent<PlayerHealth>().LoseLive();
     }
 }

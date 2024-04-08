@@ -5,11 +5,19 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private GameManager gm;
+    private bool fromTrialMode;
 
     void Start() => gm = GameManager.instance;
     
-    void OnTriggerEnter2D(Collider2D other)
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if(other.CompareTag("Player")) gm.GoToNextLevel();
+    // }
+
+    public void CheckCondition()
     {
-        if(other.CompareTag("Player")) gm.GoToNextLevel();
+        if(!gm.GetFromTrialMode()) Debug.Log("You Need To Find A Recipe");
+        else if(gm.GetFromTrialMode()) gm.CompleteGame();
     }
+
 }

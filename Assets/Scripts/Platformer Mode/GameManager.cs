@@ -24,19 +24,15 @@ public class GameManager : MonoBehaviour, IData
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject recipeWindow;
-    [SerializeField] private GameObject nextLevelDoor;
+    [SerializeField] private GameObject loseUIWindow;
+    [SerializeField] private GameObject winUIWindow;
     #endregion
 
     void Start()
     {
         LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
 
-        if(!fromTrialMode) nextLevelDoor.SetActive(false);
-        if(fromTrialMode) 
-        {
-            player.transform.localPosition = new Vector3(this.posX, this.posY, this.posZ);
-            nextLevelDoor.SetActive(true);
-        }
+        if(fromTrialMode) player.transform.localPosition = new Vector3(this.posX, this.posY, this.posZ);
         
         intialPosition = player.transform.localPosition;
     }
@@ -70,6 +66,7 @@ public class GameManager : MonoBehaviour, IData
     {
         StartCoroutine(DelayControl());
         player.transform.position = intialPosition;
+        player.GetComponent<PlayerHealth>().LoseLive();
     }
 
     IEnumerator DelayControl()
@@ -84,10 +81,15 @@ public class GameManager : MonoBehaviour, IData
         return canControl;
     }
 
+    public bool GetFromTrialMode()
+    {
+        return fromTrialMode;
+    }
+
     public void ShowGetRecipeWindow()
     {
         canControl = false;
-        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 0.0f, 1.0f, 0.3f).setOnComplete(() =>
+        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() =>
         {
             StartCoroutine(ViewRecipe());
         });
@@ -95,9 +97,6 @@ public class GameManager : MonoBehaviour, IData
 
     public void GoToNextLevel()
     {
-        canControl = false;
-        isComplete = true;
-
         if(levelIndex < 6) 
         {
             LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
@@ -106,19 +105,52 @@ public class GameManager : MonoBehaviour, IData
 
     private void GoToTrialMode()
     {
-        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(1));
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("TrialCookingMode"));
+    }
+
+    public void ReloadLevel() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Level" + levelIndex.ToString()));
+
+    public void GoToMainMenu()
+    {
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
+    }
+
+    public void GameOver()
+    {
+        canControl = false;
+
+        LeanTween.value(loseUIWindow, UpdateLoseUIWindowAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => 
+        {
+            loseUIWindow.GetComponent<CanvasGroup>().interactable = true;
+            loseUIWindow.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        });
+    }
+
+    public void CompleteGame()
+    {
+        canControl = false;
+        isComplete = true;
+
+        LeanTween.value(winUIWindow, UpdateWinUIWindowAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => 
+        {
+            winUIWindow.GetComponent<CanvasGroup>().interactable = true;
+            winUIWindow.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        });
     }
 
     private void UpdateRecipeWindowAlpha(float alpha) => recipeWindow.GetComponent<CanvasGroup>().alpha = alpha; 
 
     private void UpdateBlackscreenAlpha(float alpha) => blackScreen.GetComponent<CanvasGroup>().alpha = alpha;
+
+    private void UpdateLoseUIWindowAlpha(float alpha) => loseUIWindow.GetComponent<CanvasGroup>().alpha = alpha;
+
+    private void UpdateWinUIWindowAlpha(float alpha) => winUIWindow.GetComponent<CanvasGroup>().alpha = alpha;
     
     IEnumerator ViewRecipe()
     {
-        yield return new WaitForSeconds(1.0f);
-        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 1.0f, 0.0f, 0.4f).setOnComplete(() => 
+        yield return new WaitForSeconds(0.8f);
+        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 1.0f, 0.0f, 0.5f).setOnComplete(() => 
         {
-            canControl = true;
             GoToTrialMode();
         });
     }

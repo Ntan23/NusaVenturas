@@ -10,6 +10,8 @@ public class GameData
     
     #region PlatformerMode
     public float posX, posY, posZ;
+    public float healthCount;
+    public float immunityTime;
     public int levelUnlocked;
     public int levelIndex;
     public int collectedRecipeCount;
@@ -28,6 +30,8 @@ public class GameData
         posX = 0.0f;
         posY = 0.0f;
         posZ = 0.0f;
+        healthCount = 3.0f;
+        immunityTime = 1.0f;
         levelUnlocked = 1;
         levelIndex = 1;
         collectedRecipeCount = 0;

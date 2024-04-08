@@ -106,8 +106,20 @@ public class LevelSelectionManager : MonoBehaviour, IData
         {
             buttons[index].GetComponent<Image>().color = selectedButtonColor;
             
-            LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
-            
+            if(index != 1) 
+            {
+                LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+
+                panel.transform.GetChild(0).transform.localScale = Vector3.one;
+            }
+
+            if(index == 1)
+            {
+                LeanTween.scale(buttons[index].gameObject, new Vector3(-1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+
+                panel.transform.GetChild(0).transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
+
             LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseInOutExpo().setOnComplete(() => {
                 playButton.interactable = true;
 
@@ -121,11 +133,27 @@ public class LevelSelectionManager : MonoBehaviour, IData
             panel.transform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
             buttons[tempIndex].GetComponent<Image>().color = Color.red;
 
-            LeanTween.scale(buttons[tempIndex].gameObject, Vector3.one, 0.3f).setEaseSpring();
-            
+            if(tempIndex != 1) LeanTween.scale(buttons[tempIndex].gameObject, Vector3.one, 0.3f).setEaseSpring();
+
+            if(tempIndex == 1) LeanTween.scale(buttons[tempIndex].gameObject, new Vector3(-1.0f, 1.0f, 1.0f), 0.3f).setEaseSpring();
+
             buttons[index].GetComponent<Image>().color = selectedButtonColor;
 
-            LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+            // LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+
+            if(index != 1) 
+            {
+                LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+
+                panel.transform.GetChild(0).transform.localScale = Vector3.one;
+            }
+
+            if(index == 1)
+            {
+                LeanTween.scale(buttons[index].gameObject, new Vector3(-1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+
+                panel.transform.GetChild(0).transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            }
 
             LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseInOutExpo().setOnComplete(() => {
                 playButton.interactable = true;
@@ -137,7 +165,7 @@ public class LevelSelectionManager : MonoBehaviour, IData
 
     public void GoToLevel() 
     {
-        if(isInTrialMode[tempIndex]) SceneManager.LoadScene(1);
+        if(isInTrialMode[tempIndex]) SceneManager.LoadScene("TrialCookingMode");
         else SceneManager.LoadScene("Level" + (tempIndex + 1).ToString());
     }
 }

@@ -6,6 +6,6 @@ public class EnemyContactDamage : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        if(collisionInfo.gameObject.CompareTag("Player")) collisionInfo.gameObject.GetComponent<PlayerHealth>().LoseLive();
+        if(collisionInfo.gameObject.CompareTag("Player") && !collisionInfo.gameObject.GetComponent<PlayerHealth>().GetIsInvulnerable()) collisionInfo.gameObject.GetComponent<PlayerHealth>().LoseLive();
     }
 }
