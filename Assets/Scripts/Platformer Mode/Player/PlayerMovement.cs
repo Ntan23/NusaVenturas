@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour,IData
 {
     #region Variables
     [Header("References")]
@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     [Header("For Movement")]
-    [SerializeField] float speed;
-    [SerializeField] float jumpPower;
+    [SerializeField] private float speed;
+    private float jumpPower;
     const float groundCheckRadius = 0.2f;
     [SerializeField] private int totalJumps;
     int availableJumps;
@@ -73,6 +73,12 @@ public class PlayerMovement : MonoBehaviour
         Move(horizontalValue);
     }
 
+    public void LoadData(GameData gameData) => this.jumpPower = gameData.jumpPower;
+    
+    public void SaveData(GameData gameData)
+    {
+        
+    }
     void GroundCheck()
     {
         bool wasGrounded = isGrounded;
@@ -168,6 +174,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("XVelocity", Mathf.Abs(rb.velocity.x));
         #endregion
     }  
+    
+    public void UpdateJumpPower(float value) => jumpPower = value;
 
     private void OnDrawGizmosSelected()
     {

@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour, IData
     {
         gm = GameManager.instance;
 
-        numberOfFlashes = 3.0f * iFramesDuration;
+        numberOfFlashes = iFramesDuration * 3.0f;
 
         maxHealth = healthCount;
 
@@ -66,6 +66,19 @@ public class PlayerHealth : MonoBehaviour, IData
 
             healthText.text = healthCount.ToString() + " / " + maxHealth.ToString();
         }
+    }
+
+    public void UpgradeHealth(float value)
+    {
+        maxHealth = value;
+
+        UpdateHealthUI();
+    }
+
+    public void UpgradeImmunityTime(float value)
+    {
+        iFramesDuration = value;
+        numberOfFlashes = iFramesDuration * 3;
     }
 
     IEnumerator Invunerability()

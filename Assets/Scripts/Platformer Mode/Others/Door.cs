@@ -5,7 +5,6 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private GameManager gm;
-    private bool fromTrialMode;
 
     void Start() => gm = GameManager.instance;
     
@@ -20,4 +19,8 @@ public class Door : MonoBehaviour
         else if(gm.GetFromTrialMode()) gm.CompleteGame();
     }
 
+    public void ShopDoor()
+    {
+        
+    }
 }

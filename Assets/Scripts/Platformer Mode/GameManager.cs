@@ -86,35 +86,26 @@ public class GameManager : MonoBehaviour, IData
         return fromTrialMode;
     }
 
+    public void OpenShop() => canControl = false;
+    public void CloseShop() => canControl = true;
+    
     public void ShowGetRecipeWindow()
     {
         canControl = false;
-        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() =>
-        {
-            StartCoroutine(ViewRecipe());
-        });
+        LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() => StartCoroutine(ViewRecipe()));
     }
 
     public void GoToNextLevel()
     {
-        if(levelIndex < 6) 
-        {
-            LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
-        }
+        if(levelIndex < 6) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    private void GoToTrialMode()
-    {
-        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("TrialCookingMode"));
-    }
+    private void GoToTrialMode() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("TrialCookingMode"));
 
     public void ReloadLevel() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Level" + levelIndex.ToString()));
 
-    public void GoToMainMenu()
-    {
-        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
-    }
-
+    public void GoToMainMenu() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
+    
     public void GameOver()
     {
         canControl = false;
