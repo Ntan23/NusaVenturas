@@ -26,7 +26,6 @@ public class PlayerHealth : MonoBehaviour, IData
 
         numberOfFlashes = iFramesDuration * 3.0f;
 
-
         UpdateHealthUI();
 
         Physics2D.IgnoreLayerCollision(0,8,false);

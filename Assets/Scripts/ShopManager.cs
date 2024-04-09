@@ -47,7 +47,7 @@ public class ShopManager : MonoBehaviour, IData
         nextImmunityTime = immunityTime + 0.5f;
         nextJumpPower = jumpPower + 0.5f;
         nextHealth = healthCount + 1.0f;
-
+        
         UpdateCoinTextUI();
         UpdateShopUI();
     }
@@ -144,6 +144,8 @@ public class ShopManager : MonoBehaviour, IData
             jumpPowerUpgradeCost *= 1.5f;
         }
 
+        coinCount = 100;
+
         UpdateShopUI();
     }
 
@@ -190,6 +192,9 @@ public class ShopManager : MonoBehaviour, IData
     private void UpdateShopUI()
     {
         if(coinCount < healthUpgradeCost) upgradeButton[0].interactable = false;
+        if(coinCount < immunityTimeUpgradeCost) upgradeButton[1].interactable = false;
+        if(coinCount < jumpPowerUpgradeCost) upgradeButton[2].interactable = false;
+        if(coinCount < cookingSpeedUpgradeCost) upgradeButton[3].interactable = false;
 
         #region Health
         if(healthLevel < maxLevel) 
