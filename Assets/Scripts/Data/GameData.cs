@@ -13,6 +13,7 @@ public class GameData
     #region PlatformerMode
     public float posX, posY, posZ;
     public float healthCount;
+    public float savedHealth;
     public int healthLevel;
     public float healthUpgradeCost;
     public float immunityTime;
@@ -42,6 +43,7 @@ public class GameData
         posY = 0.0f;
         posZ = 0.0f;
         healthCount = 2.0f;
+        savedHealth = 0.0f;
         healthLevel = 1;
         healthUpgradeCost = 4.0f;
         immunityTime = 1.0f;

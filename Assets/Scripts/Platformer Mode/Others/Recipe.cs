@@ -9,7 +9,9 @@ public class Recipe : MonoBehaviour, IData
     private bool flag;
     private int collectedRecipeCount;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private PlayerHealth playerHealth;
     private float posX, posY, posZ;
+    private float healthCount;
 
     public void LoadData(GameData gameData) 
     {
@@ -36,7 +38,9 @@ public class Recipe : MonoBehaviour, IData
         {
             gameData.posX = this.posX;
             gameData.posY = this.posY;
-            gameData.posZ = this.posZ;    
+            gameData.posZ = this.posZ;   
+
+            gameData.savedHealth = this.healthCount;
         }
     }
 
@@ -49,5 +53,7 @@ public class Recipe : MonoBehaviour, IData
         this.posX = playerTransform.localPosition.x;
         this.posY = playerTransform.localPosition.y;
         this.posZ = playerTransform.localPosition.z;
+
+        this.healthCount = playerHealth.GetHealthCount();
     }
 }

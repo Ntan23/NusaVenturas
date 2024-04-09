@@ -26,7 +26,6 @@ public class PlayerHealth : MonoBehaviour, IData
 
         numberOfFlashes = iFramesDuration * 3.0f;
 
-        maxHealth = healthCount;
 
         UpdateHealthUI();
 
@@ -35,8 +34,11 @@ public class PlayerHealth : MonoBehaviour, IData
 
     public void LoadData(GameData gameData)
     {
-        this.healthCount = gameData.healthCount;
+        if(!gameData.fromTrialMode[gameData.levelIndex - 1]) this.healthCount = gameData.healthCount;
+        if(gameData.fromTrialMode[gameData.levelIndex - 1]) this.healthCount = gameData.savedHealth;
         this.iFramesDuration = gameData.immunityTime;
+
+        this.maxHealth = gameData.healthCount;
     }
 
     public void SaveData(GameData gameData)
@@ -71,6 +73,7 @@ public class PlayerHealth : MonoBehaviour, IData
     public void UpgradeHealth(float value)
     {
         maxHealth = value;
+        healthCount = value;
 
         UpdateHealthUI();
     }
@@ -102,5 +105,10 @@ public class PlayerHealth : MonoBehaviour, IData
     public bool GetIsInvulnerable()
     {
         return isInvunerable;
+    }
+
+    public float GetHealthCount()
+    {
+        return healthCount;
     }
 }

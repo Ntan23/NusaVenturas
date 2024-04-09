@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour, IData
         LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
 
         if(fromTrialMode) player.transform.localPosition = new Vector3(this.posX, this.posY, this.posZ);
-        
+    
         intialPosition = player.transform.localPosition;
     }
 
@@ -84,6 +84,11 @@ public class GameManager : MonoBehaviour, IData
     public bool GetFromTrialMode()
     {
         return fromTrialMode;
+    }
+
+    public int GetLevelIndex()
+    {
+        return levelIndex;
     }
 
     public void OpenShop() => canControl = false;
