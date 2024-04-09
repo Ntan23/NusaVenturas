@@ -81,7 +81,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(!endlessMode)
         {
             maxTime = initialTimeForTrial;
-            coinCountText.text = coinCount.ToString("0.0");
+            coinCountText.text = coinCount.ToString("0.00");
         }
         
         currentTime = maxTime;
@@ -215,7 +215,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
                 coinCount--;
                 if(coinCount < 0) coinCount = 0;
 
-                coinCountText.text = coinCount.ToString("0.0");
+                coinCountText.text = coinCount.ToString("0.00");
             }
 
             ResetIngredients();
@@ -273,7 +273,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
         {
             coinCount += currentFoodOrder.foodPrice;
 
-            coinCountText.text = coinCount.ToString("0.0");
+            coinCountText.text = coinCount.ToString("0.00");
         }
 
         completedFoodImage.GetComponent<SpriteRenderer>().sprite = currentFoodOrder.foodSpriteWithoutFrame;
