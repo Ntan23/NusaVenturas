@@ -38,7 +38,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     { 
-        if(!gm.GetCanControl()) return;
+        if(gm != null) if(!gm.GetCanControl()) return;
 
         if(DetectObjects())
         {

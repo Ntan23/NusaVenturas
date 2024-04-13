@@ -10,6 +10,7 @@ public class ShopManager : MonoBehaviour, IData
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private GameObject shopWindow;
+    [SerializeField] private bool isInMainMenu;
     #region Stats&UpgradeVariables
     private int maxLevel = 3;
     private float cookingSpeed;
@@ -37,11 +38,13 @@ public class ShopManager : MonoBehaviour, IData
     [SerializeField] private Button[] upgradeButton;
     [SerializeField] private GameObject[] maxButton;
     private GameManager gm;
+    private MainMenuManager mm;
     #endregion
 
     void Start() 
     {
-        gm = GameManager.instance;
+        if(!isInMainMenu) gm = GameManager.instance;
+        if(isInMainMenu) mm = MainMenuManager.instance;
 
         nextCookingSpeed = cookingSpeed - 0.5f;
         nextImmunityTime = immunityTime + 0.5f;
@@ -88,7 +91,9 @@ public class ShopManager : MonoBehaviour, IData
 
     public void OpenShopWindow() 
     {
-        gm.OpenShop();
+        if(!isInMainMenu) gm.OpenShop();
+        if(isInMainMenu) mm.OpenShop();
+
         LeanTween.value(shopWindow, UpdateShopWindowAlpha, 0.0f, 1.0f, 0.6f).setOnComplete(() => 
         {
             shopWindow.GetComponent<CanvasGroup>().interactable = true;
@@ -99,7 +104,9 @@ public class ShopManager : MonoBehaviour, IData
     public void CloseShopWindow() 
     {
         LeanTween.value(shopWindow, UpdateShopWindowAlpha, 1.0f, 0.0f, 0.6f).setOnComplete(() => {
-            gm.CloseShop();
+            if(!isInMainMenu) gm.CloseShop();
+            if(isInMainMenu) mm.CloseShop();
+            
             shopWindow.GetComponent<CanvasGroup>().interactable = false;
             shopWindow.GetComponent<CanvasGroup>().blocksRaycasts = false;
         });

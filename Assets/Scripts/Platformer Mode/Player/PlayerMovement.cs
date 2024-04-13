@@ -30,11 +30,13 @@ public class PlayerMovement : MonoBehaviour,IData
     private bool isAirborne;
     private PlayerInteraction playerInteraction;
     private GameManager gm;
+    private MainMenuManager mm;
     #endregion
 
     void Start()
     {
         gm = GameManager.instance;
+        mm = MainMenuManager.instance;
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -49,10 +51,22 @@ public class PlayerMovement : MonoBehaviour,IData
         
         horizontalValue = Input.GetAxisRaw("Horizontal");
 
-        if(!gm.GetCanControl()) 
+        if(gm != null)
         {
-            horizontalValue = 0;
-            return;
+            if(!gm.GetCanControl()) 
+            {
+                horizontalValue = 0;
+                return;
+            }
+        }
+
+        if(mm != null) 
+        {
+            if(!mm.GetCanControl()) 
+            {
+                horizontalValue = 0;
+                return;
+            }
         }
          
         if(Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;

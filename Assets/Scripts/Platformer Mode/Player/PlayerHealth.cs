@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour, IData
 
     private void UpdateHealthUI()
     {
-        if(healthCount >= 0)
+        if(healthCount >= 0 && healthBar != null)
         {
             healthBar.fillAmount = healthCount/maxHealth;
 
