@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private PlayerMovement playerMovement;
-    private Rigidbody2D rb;
-
-    void Start()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-        rb = GetComponent<Rigidbody2D>();   
-    } 
-    
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private Rigidbody2D rb;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Enemy") && playerMovement.GetIsAirborne()) 
         {
-            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            rb.velocity = Vector2.up * 6.0f;
             other.gameObject.SetActive(false);
         }
     }

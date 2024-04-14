@@ -21,13 +21,19 @@ public class PlayerMovement : MonoBehaviour,IData
     [SerializeField] private float coyoteTime;
     private float horizontalValue;
     [SerializeField] private float runSpeedModifier = 2f;
-    
+
+    [Header("For Knockback")]
+    [SerializeField] private float knockbackForce;
+    private float knockbackCounter;
+    [SerializeField] private float knockbackTime;
+    private bool knockFromLeft;
     private bool isGrounded = true;    
     private bool isRunning;
     private bool facingRight = true;
     private bool multipleJump;
     private bool coyoteJump;
     private bool isAirborne;
+    private bool canControl;
     private PlayerInteraction playerInteraction;
     private GameManager gm;
     private MainMenuManager mm;
@@ -47,13 +53,19 @@ public class PlayerMovement : MonoBehaviour,IData
 
     void Update()
     {
-        if(playerInteraction.GetIsExamining()) return;
+        if(playerInteraction.GetIsExamining()) 
+        {
+            horizontalValue = 0;
+            return;
+        }
         
         horizontalValue = Input.GetAxisRaw("Horizontal");
 
         if(gm != null)
         {
-            if(!gm.GetCanControl()) 
+            canControl = gm.GetCanControl();
+
+            if(!canControl) 
             {
                 horizontalValue = 0;
                 return;
@@ -62,18 +74,20 @@ public class PlayerMovement : MonoBehaviour,IData
 
         if(mm != null) 
         {
-            if(!mm.GetCanControl()) 
+            canControl = mm.GetCanControl();
+
+            if(!canControl) 
             {
                 horizontalValue = 0;
                 return;
             }
         }
          
-        if(Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canControl) isRunning = true;
         
-        if(Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
+        if(Input.GetKeyUp(KeyCode.LeftShift) && canControl) isRunning = false;
         
-        if(Input.GetButtonDown("Jump")) Jump();
+        if(Input.GetButtonDown("Jump") && canControl) Jump();
 
         if(Mathf.Abs(rb.velocity.y) > 0) isAirborne = true;
         else if(rb.velocity.y == 0) isAirborne = false;
@@ -84,7 +98,22 @@ public class PlayerMovement : MonoBehaviour,IData
     void FixedUpdate()
     {
         GroundCheck();
-        Move(horizontalValue);
+
+        if(knockbackCounter <= 0) 
+        {
+            canControl = true;
+
+            Move(horizontalValue);
+        }
+        else if(knockbackCounter > 0)
+        {
+            canControl = false;
+
+            if(knockFromLeft) rb.velocity = new Vector2(knockbackForce, knockbackForce);
+            if(!knockFromLeft) rb.velocity = new Vector2(-knockbackForce, knockbackForce);
+        
+            knockbackCounter -= Time.deltaTime;
+        }
     }
 
     public void LoadData(GameData gameData) => this.jumpPower = gameData.jumpPower;
@@ -93,6 +122,7 @@ public class PlayerMovement : MonoBehaviour,IData
     {
         
     }
+
     void GroundCheck()
     {
         bool wasGrounded = isGrounded;
@@ -189,6 +219,8 @@ public class PlayerMovement : MonoBehaviour,IData
         #endregion
     }  
     
+    public void SetKnockback() => knockbackCounter = knockbackTime;
+    public void SetKnockFromLeftValue(bool value) => knockFromLeft = value;
     public void UpdateJumpPower(float value) => jumpPower = value;
 
     private void OnDrawGizmosSelected()

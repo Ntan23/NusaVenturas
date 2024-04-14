@@ -21,11 +21,13 @@ public class GameManager : MonoBehaviour, IData
     private bool fromTrialMode;
     private float posX, posY, posZ;
     [SerializeField] private int levelIndex;
+    private int levelUnlocked;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private GameObject recipeWindow;
     [SerializeField] private GameObject loseUIWindow;
     [SerializeField] private GameObject winUIWindow;
+    [SerializeField] private GameObject errorPopUp;
     #endregion
 
     void Start()
@@ -39,8 +41,6 @@ public class GameManager : MonoBehaviour, IData
 
     public void LoadData(GameData gameData)
     {
-        Debug.Log(gameData.fromTrialMode[this.levelIndex - 1]);
-
         if(gameData.fromTrialMode[this.levelIndex - 1])
         {
             this.posX = gameData.posX;
@@ -49,17 +49,15 @@ public class GameManager : MonoBehaviour, IData
         }
 
         this.fromTrialMode = gameData.fromTrialMode[this.levelIndex - 1];
+        this.levelUnlocked = gameData.levelUnlocked;
     }
 
     public void SaveData(GameData gameData) 
     {
         gameData.levelIndex = this.levelIndex;
+        gameData.levelUnlocked = this.levelUnlocked;
 
-        if(this.levelIndex == gameData.levelUnlocked && this.isComplete) 
-        {
-            gameData.levelUnlocked++;
-            gameData.fromTrialMode[this.levelIndex - 1] = false;
-        }
+        if(this.isComplete) gameData.fromTrialMode[this.levelIndex - 1] = false;
     }
     
     public void Respawn()
@@ -100,6 +98,22 @@ public class GameManager : MonoBehaviour, IData
         LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() => StartCoroutine(ViewRecipe()));
     }
 
+    public void CheckWinCondition()
+    {
+        if(levelUnlocked > levelIndex) CompleteGame();
+        else if(levelUnlocked <= levelIndex)
+        {
+            if(!fromTrialMode) LeanTween.moveLocalY(errorPopUp, 430.0f, 0.5f).setOnComplete(() => StartCoroutine(ShowErrorPopUp()));
+            else if(fromTrialMode) CompleteGame();
+        }
+    }
+
+    IEnumerator ShowErrorPopUp()
+    {
+        yield return new WaitForSeconds(1.0f);
+        LeanTween.moveLocalY(errorPopUp, 770.0f, 0.5f);
+    }
+
     public void GoToNextLevel()
     {
         if(levelIndex < 6) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
@@ -126,6 +140,8 @@ public class GameManager : MonoBehaviour, IData
     {
         canControl = false;
         isComplete = true;
+
+        if(levelUnlocked == levelIndex) levelUnlocked++;
 
         LeanTween.value(winUIWindow, UpdateWinUIWindowAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => 
         {

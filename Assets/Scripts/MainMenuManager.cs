@@ -23,27 +23,20 @@ public class MainMenuManager : MonoBehaviour, IData
     [SerializeField] private TextMeshProUGUI errorText;
     #endregion
     
-    void Start()
-    {
-        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
-    }
-
-    public void LoadData(GameData gameData)
-    {
-        this.collectedRecipeCount = gameData.collectedRecipeCount;
-    }
-
+    void Start() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => canControl = true);
+    
+    public void LoadData(GameData gameData) => this.collectedRecipeCount = gameData.collectedRecipeCount;
+    
     public void SaveData(GameData gameData)
     {
-        
     }
 
     public void OpenShop() => canControl = false;
     public void CloseShop() => canControl = true;
 
-    public void GoToLevelSelection() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+    public void GoToLevelSelection() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
 
-    public void QuitGame() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => Application.Quit());
+    public void QuitGame() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => Application.Quit());
 
     public void GoToEndlessMode()
     {
@@ -53,7 +46,7 @@ public class MainMenuManager : MonoBehaviour, IData
 
             LeanTween.moveLocalY(errorPopUp, 430.0f, 0.5f).setOnComplete(() => StartCoroutine(ShowErrorPopUp()));
         }
-        if(collectedRecipeCount == 6) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("EndlessCookingMode"));
+        if(collectedRecipeCount == 6) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("EndlessCookingMode"));
     }
 
     IEnumerator ShowErrorPopUp()

@@ -166,6 +166,6 @@ public class LevelSelectionManager : MonoBehaviour, IData
     public void GoToLevel() 
     {
         if(isInTrialMode[tempIndex]) SceneManager.LoadScene("TrialCookingMode");
-        else SceneManager.LoadScene("Level" + (tempIndex + 1).ToString());
+        if(!isInTrialMode[tempIndex]) SceneManager.LoadScene("Level" + (tempIndex + 1).ToString());
     }
 }

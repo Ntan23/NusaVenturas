@@ -74,8 +74,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
         if(endlessMode)
         {
-            highestProfitText.text = "Highest Profit : " + highestProfit.ToString();
-            currentProfitText.text = "Current Profit : " + currentProfit.ToString();
+            highestProfitText.text = "Highest Profits : " + highestProfit.ToString("0.00");
+            currentProfitText.text = "Current Profits : " + currentProfit.ToString("0.00");
         }
 
         if(!endlessMode)
@@ -170,7 +170,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
             orderFoodImage.sprite = currentFoodOrder.foodSpriteWithFrame;
             //ingredients.text = currentFoodOrder.foodIngredients;
             orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
-            orderFoodPriceText.text = "Food Price : " + currentFoodOrder.foodPrice.ToString();
+            orderFoodPriceText.text = "+ " + currentFoodOrder.foodPrice.ToString("0.00");
 
             Debug.Log(currentFoodOrder.foodID);
         }
@@ -207,7 +207,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
                 currentProfit --;
                 if(currentProfit < 0) currentProfit = 0;
                 
-                currentProfitText.text = "Score : " + currentProfit.ToString();
+                currentProfitText.text = "Current Profits : " + currentProfit.ToString("0.00");
             }
 
             if(!endlessMode) 
@@ -259,11 +259,11 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(endlessMode)
         {
             currentProfit += currentFoodOrder.foodPrice;
-            currentProfitText.text = "Current Profit : " + currentProfit.ToString();
+            currentProfitText.text = "Current Profits : " + currentProfit.ToString("0.00");
 
             if(currentProfit > highestProfit) 
             {
-                highestProfitText.text = "Highest Profit : " + currentProfit.ToString();
+                highestProfitText.text = "Highest Profits : " + currentProfit.ToString("0.00");
 
                 highestProfit = currentProfit;
             }
