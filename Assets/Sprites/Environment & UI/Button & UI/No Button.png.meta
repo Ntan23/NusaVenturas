@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 54f1982c928bee249b3a6c1e9374598b
+guid: 2981ac60dcce5f041b377b10cbaca9ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Resume Button_0
+      name: No Button_0
       rect:
         serializedVersion: 2
-        x: 115
-        y: 123
-        width: 294
-        height: 271
+        x: 98
+        y: 198
+        width: 308
+        height: 161
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f68628e2690fbf4438b77c4706af5341
-      internalID: 559964906
+      spriteID: 831efd2ac02692846a3a793fa031abac
+      internalID: 760768240
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Resume Button_0: 559964906
+      No Button_0: 760768240
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

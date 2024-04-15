@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour, IData
     private bool canControl;
     private bool isComplete;
     private bool fromTrialMode;
+    private bool isPaused;
+    private bool canBePressed = true;
     private float posX, posY, posZ;
     [SerializeField] private int levelIndex;
     private int levelUnlocked;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour, IData
     [SerializeField] private GameObject loseUIWindow;
     [SerializeField] private GameObject winUIWindow;
     [SerializeField] private GameObject errorPopUp;
+    [SerializeField] private GameObject pauseMenuUI;
     #endregion
 
     void Start()
@@ -37,6 +40,17 @@ public class GameManager : MonoBehaviour, IData
         if(fromTrialMode) player.transform.localPosition = new Vector3(this.posX, this.posY, this.posZ);
     
         intialPosition = player.transform.localPosition;
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!canBePressed) return; 
+
+            if(!isPaused) Pause();
+            if(isPaused) Resume();
+        }
     }
 
     public void LoadData(GameData gameData)
@@ -123,8 +137,44 @@ public class GameManager : MonoBehaviour, IData
 
     public void ReloadLevel() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Level" + levelIndex.ToString()));
 
-    public void GoToMainMenu() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
-    
+    public void GoToMainMenu() 
+    {
+        Time.timeScale = 1.0f;
+
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
+    }
+
+    private void Pause()
+    {
+        canBePressed = false;
+        canControl = false;
+
+        LeanTween.value(pauseMenuUI, UpdatePauseMenuUIAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() =>
+        {
+            pauseMenuUI.GetComponent<CanvasGroup>().interactable = true;
+            pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            isPaused = true;
+            canBePressed = true;
+
+            Time.timeScale = 0.0f;
+        });
+    }
+
+    public void Resume()
+    {
+        canBePressed = false;
+        Time.timeScale = 1.0f;
+
+        LeanTween.value(pauseMenuUI, UpdatePauseMenuUIAlpha, 1.0f, 0.0f, 0.5f).setOnComplete(() =>
+        {
+            pauseMenuUI.GetComponent<CanvasGroup>().interactable = false;
+            pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            canControl = true;
+            isPaused = false;
+            canBePressed = true;
+        });
+    }
+
     public void GameOver()
     {
         canControl = false;
@@ -158,6 +208,8 @@ public class GameManager : MonoBehaviour, IData
 
     private void UpdateWinUIWindowAlpha(float alpha) => winUIWindow.GetComponent<CanvasGroup>().alpha = alpha;
     
+    private void UpdatePauseMenuUIAlpha(float alpha) => pauseMenuUI.GetComponent<CanvasGroup>().alpha = alpha;
+
     IEnumerator ViewRecipe()
     {
         yield return new WaitForSeconds(0.8f);
