@@ -248,6 +248,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
     {
         if(ingredientCount < maxIngredient)
         {
+            StartCoroutine(PlayDropSFX());
             currentOrderID += ingredientSO.ingredientID;
 
             addedIngredient = Instantiate(ingredientSO.ingredientSprite, addedIngredientParent);
@@ -256,6 +257,13 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
             ingredientCount++;
         }
+    }
+
+    IEnumerator PlayDropSFX()
+    {
+        am.Play("Drop");
+        yield return new WaitForSeconds(0.6f);
+        am.Play("WaterSplash");
     }
 
     public void CookFood()
@@ -310,7 +318,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     IEnumerator Cook()
     {
-        Debug.Log("Cooking");
         ResetIngredients();
         cookButton.SetActive(false);
         LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 0.0f, 1.0f, 0.2f).setOnComplete(() => 
@@ -320,7 +327,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
         });
         yield return new WaitForSeconds(cookingSpeed);
         am.Play("FinishCooking");
-        Debug.Log("Finish Cooking");
         LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 1.0f, 0.0f, 0.2f).setOnComplete(() => 
         {
             cookingAnimator.enabled = false;

@@ -31,8 +31,8 @@ public class MainMenuManager : MonoBehaviour, IData
     {
     }
 
-    public void OpenShop() => canControl = false;
-    public void CloseShop() => canControl = true;
+    public void OpenShopOrOtherWindow() => canControl = false;
+    public void CloseShopOrOtherWindow() => canControl = true;
 
     public void GoToLevelSelection() => LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
 

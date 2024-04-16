@@ -17,9 +17,12 @@ public class Settings : MonoBehaviour, IData
     private int screenHeight;
     private bool isOpen;
     [SerializeField] private bool isInTheMainMenu;
+    private MainMenuManager mm;
 
     private void Start()
     {
+        mm = MainMenuManager.instance;
+
         screenWidth = Screen.currentResolution.width;
         screenHeight = Screen.currentResolution.height;
 
@@ -29,7 +32,8 @@ public class Settings : MonoBehaviour, IData
             Screen.fullScreen = true;
             Screen.SetResolution(screenWidth, screenHeight, true);
         }
-        else if(fullscreenIndicator == 0) 
+        
+        if(fullscreenIndicator == 0) 
         {
             fullscreenToogle.isOn = false;
             Screen.fullScreenMode = FullScreenMode.Windowed;
@@ -100,6 +104,7 @@ public class Settings : MonoBehaviour, IData
     public void OpenSettings()
     {
         if(Time.timeScale == 0) Time.timeScale = 1.0f;
+        if(mm != null) mm.OpenShopOrOtherWindow();
         isOpen = true;
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -120,6 +125,7 @@ public class Settings : MonoBehaviour, IData
             GetComponent<CanvasGroup>().interactable = false;
             isOpen = false;
             
+            if(mm != null) mm.CloseShopOrOtherWindow();
             if(!isInTheMainMenu) Time.timeScale = 0.0f;
         });
     }

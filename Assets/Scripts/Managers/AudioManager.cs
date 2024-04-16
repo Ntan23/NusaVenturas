@@ -46,6 +46,4 @@ public class AudioManager : MonoBehaviour
         
         s.source.Stop();
     }
-
-    public void PlayClickSFX() => Play("Click");
 }

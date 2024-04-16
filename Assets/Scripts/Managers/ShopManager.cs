@@ -100,7 +100,7 @@ public class ShopManager : MonoBehaviour, IData
             isOpen = true;
             
             if(!isInMainMenu) gm.OpenShop();
-            if(isInMainMenu) mm.OpenShop();
+            if(isInMainMenu) mm.OpenShopOrOtherWindow();
 
             LeanTween.value(shopWindow, UpdateShopWindowAlpha, 0.0f, 1.0f, 0.6f).setOnComplete(() => 
             {
@@ -114,7 +114,7 @@ public class ShopManager : MonoBehaviour, IData
     {
         LeanTween.value(shopWindow, UpdateShopWindowAlpha, 1.0f, 0.0f, 0.6f).setOnComplete(() => {
             if(!isInMainMenu) gm.CloseShop();
-            if(isInMainMenu) mm.CloseShop();
+            if(isInMainMenu) mm.CloseShopOrOtherWindow();
             
             shopWindow.GetComponent<CanvasGroup>().interactable = false;
             shopWindow.GetComponent<CanvasGroup>().blocksRaycasts = false;
