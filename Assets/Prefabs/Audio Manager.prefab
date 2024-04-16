@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1053107070496097916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053107070496097914}
+  - component: {fileID: 1053107070496097917}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053107070496097914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053107070496097916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1032.8529, y: 191.04776, z: -1.723516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1053107070496097917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053107070496097916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cafb8feb018874a89237a282810ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Cooking
+    clip: {fileID: 8300000, guid: dc2f1aa1c9676dd49be83897dca15050, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: FinishCooking
+    clip: {fileID: 8300000, guid: c3a18e2630f41e94a8e48859ab5d3f56, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Trash
+    clip: {fileID: 8300000, guid: aeb26c7aae8e9144aa12dd90ce8a14f1, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: 6d18889c4d6b5b241b097f7bde5107d1, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 9e8ccd1fd8b02c243af56b71ad3bde60, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Jump
+    clip: {fileID: 8300000, guid: a45627fc0cbbe7444ab2f50bdd4ffa3d, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Interact
+    clip: {fileID: 8300000, guid: 5d8acfedf1edf9d41a1eca1f9f5af9d2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Upgrade
+    clip: {fileID: 8300000, guid: 2d52aeceea44c2a4a8e17346deaf2442, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Click
+    clip: {fileID: 8300000, guid: c585bb7d49e34d24381ed6264031b8f6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}

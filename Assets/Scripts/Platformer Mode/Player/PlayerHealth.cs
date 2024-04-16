@@ -19,10 +19,12 @@ public class PlayerHealth : MonoBehaviour, IData
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI healthText;
     private GameManager gm;
+    private AudioManager am;
 
     void Start() 
     {
         gm = GameManager.instance;
+        am = AudioManager.instance;
 
         numberOfFlashes = iFramesDuration * 3.0f;
 
@@ -85,6 +87,8 @@ public class PlayerHealth : MonoBehaviour, IData
 
     IEnumerator Invunerability()
     {
+        am.Play("Hurt");
+        
         isInvunerable = true;
 
         Physics2D.IgnoreLayerCollision(0,8,true);

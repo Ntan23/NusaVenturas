@@ -21,10 +21,13 @@ public class Item : MonoBehaviour
     public UnityEvent customEvent;
     private PlayerInteraction playerInteraction;
     private Lever leverScript;
+    private AudioManager am;
     #endregion
 
     void Start()
     {
+        am = AudioManager.instance;
+        
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteraction>();
 
         switch(type)
@@ -56,6 +59,8 @@ public class Item : MonoBehaviour
 
     public void InteractObject()
     {
+        am.Play("Interact");
+        
         switch(type)
         {
             case InteractionType.Lever :

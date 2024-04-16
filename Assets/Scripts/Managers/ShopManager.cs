@@ -38,9 +38,9 @@ public class ShopManager : MonoBehaviour, IData
     [SerializeField] private TextMeshProUGUI[] upgradeCostText;
     [SerializeField] private Button[] upgradeButton;
     [SerializeField] private GameObject[] maxButton;
-    [SerializeField] private GameObject interactText;
     private GameManager gm;
     private MainMenuManager mm;
+    private AudioManager am;
     #endregion
 
     void Start() 
@@ -48,11 +48,13 @@ public class ShopManager : MonoBehaviour, IData
         if(!isInMainMenu) gm = GameManager.instance;
         if(isInMainMenu) mm = MainMenuManager.instance;
 
+        am = AudioManager.instance;
+
         nextCookingSpeed = cookingSpeed - 0.5f;
         nextImmunityTime = immunityTime + 0.5f;
         nextJumpPower = jumpPower + 0.5f;
         nextHealth = healthCount + 1.0f;
-        
+
         UpdateCoinTextUI();
         UpdateShopUI();
     }
@@ -127,6 +129,8 @@ public class ShopManager : MonoBehaviour, IData
     {
         if(healthLevel < maxLevel && coinCount >= healthUpgradeCost)
         {
+            am.Play("Upgrade");
+
             coinCount -= healthUpgradeCost;
             UpdateCoinTextUI();
 
@@ -147,6 +151,8 @@ public class ShopManager : MonoBehaviour, IData
     {
         if(jumpLevel < maxLevel && coinCount >= jumpPowerUpgradeCost)
         {
+            am.Play("Upgrade");
+
             coinCount -= jumpPowerUpgradeCost;
             UpdateCoinTextUI();
 
@@ -169,6 +175,8 @@ public class ShopManager : MonoBehaviour, IData
     {
         if(immunityLevel < maxLevel && coinCount >= immunityTimeUpgradeCost)
         {
+            am.Play("Upgrade");
+
             coinCount -= immunityTimeUpgradeCost;
             UpdateCoinTextUI();
 
@@ -189,6 +197,8 @@ public class ShopManager : MonoBehaviour, IData
     {
         if(cookingSpeedLevel < maxLevel && coinCount >= cookingSpeedUpgradeCost) 
         {
+            am.Play("Upgrade");
+
             coinCount -= cookingSpeedUpgradeCost;
             UpdateCoinTextUI();
 

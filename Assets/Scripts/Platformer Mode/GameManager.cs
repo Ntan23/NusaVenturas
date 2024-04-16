@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour, IData
     [SerializeField] private GameObject winUIWindow;
     [SerializeField] private GameObject errorPopUp;
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private Settings settings;
     #endregion
 
     void Start()
@@ -49,7 +50,16 @@ public class GameManager : MonoBehaviour, IData
             if(!canBePressed) return; 
 
             if(!isPaused) Pause();
-            if(isPaused) Resume();
+            if(isPaused) 
+            {
+                if(settings != null)
+                {
+                    if(!settings.GetIsOpen()) Resume();
+                    if(settings.GetIsOpen()) return;
+                }
+
+                if(settings == null) Resume();
+            }
         }
     }
 

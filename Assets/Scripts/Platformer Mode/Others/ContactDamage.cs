@@ -16,7 +16,7 @@ public class ContactDamage : MonoBehaviour
             if(collisionInfo.gameObject.transform.position.x <= transform.position.x) playerMovement.SetKnockFromLeftValue(false);
             if(collisionInfo.gameObject.transform.position.x > transform.position.x) playerMovement.SetKnockFromLeftValue(true);
 
-            //playerHealth.LoseLive();
+            playerHealth.LoseLive();
         }
     }
 }

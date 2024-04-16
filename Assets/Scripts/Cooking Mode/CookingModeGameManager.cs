@@ -66,10 +66,18 @@ public class CookingModeGameManager : MonoBehaviour, IData
     [SerializeField] private GameObject completedFoodImage;
     private int highestProfit;
     private int currentProfit;
+    [Header("Others")]
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private Settings settings;
+    private bool canBePressed = true;
+    private bool isPaused;
+    private AudioManager am;
     #endregion
 
     void Start()
     {
+        am = AudioManager.instance;
+
         cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
         if(endlessMode)
@@ -100,6 +108,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
             isStarted = true;
         });
+
+        am.Play("Cooking");
     }
 
     public void LoadData(GameData gameData) 
@@ -145,7 +155,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
     {
         if(!isStarted) return;
 
-        currentTime -= Time.deltaTime;
+        if(!isPaused) currentTime -= Time.deltaTime;
 
         UpdateTimerBar();
 
@@ -155,7 +165,65 @@ public class CookingModeGameManager : MonoBehaviour, IData
             CompleteGame();
             return;
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!canBePressed) return; 
+
+            if(!isPaused) Pause();
+            if(isPaused) 
+            {
+                if(settings != null)
+                {
+                    if(!settings.GetIsOpen()) Resume();
+                    if(settings.GetIsOpen()) return;
+                }
+
+                if(settings == null) Resume();
+            }
+        }
     }
+
+    public void GoToMainMenu() 
+    {
+        Time.timeScale = 1.0f;
+
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
+    }
+
+    private void Pause()
+    {
+        am.Stop("Cooking");
+        canBePressed = false;
+
+        LeanTween.value(pauseMenuUI, UpdatePauseMenuUIAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() =>
+        {
+            pauseMenuUI.GetComponent<CanvasGroup>().interactable = true;
+            pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            isPaused = true;
+            canBePressed = true;
+
+            Time.timeScale = 0.0f;
+        });
+    }
+
+    public void Resume()
+    {
+        canBePressed = false;
+        Time.timeScale = 1.0f;
+        am.Play("Cooking");
+
+        LeanTween.value(pauseMenuUI, UpdatePauseMenuUIAlpha, 1.0f, 0.0f, 0.5f).setOnComplete(() =>
+        {
+            pauseMenuUI.GetComponent<CanvasGroup>().interactable = false;
+            pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            isPaused = false;
+            canBePressed = true;
+        });
+    }
+
+    private void UpdatePauseMenuUIAlpha(float alpha) => pauseMenuUI.GetComponent<CanvasGroup>().alpha = alpha;
 
     public void GenerateNewOrder()
     {
@@ -202,6 +270,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
     {
         if(ingredientCount > 0)
         {
+            am.Play("Trash");
+
             if(endlessMode)
             {
                 currentProfit --;
@@ -249,6 +319,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
             cookingIndicator.GetComponent<CanvasGroup>().blocksRaycasts = true;
         });
         yield return new WaitForSeconds(cookingSpeed);
+        am.Play("FinishCooking");
         Debug.Log("Finish Cooking");
         LeanTween.value(cookingIndicator, UpdateCookingIndicatorAlpha, 1.0f, 0.0f, 0.2f).setOnComplete(() => 
         {

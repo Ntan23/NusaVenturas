@@ -37,12 +37,14 @@ public class PlayerMovement : MonoBehaviour,IData
     private PlayerInteraction playerInteraction;
     private GameManager gm;
     private MainMenuManager mm;
+    private AudioManager am;
     #endregion
 
     void Start()
     {
         gm = GameManager.instance;
         mm = MainMenuManager.instance;
+        am = AudioManager.instance;
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -168,6 +170,8 @@ public class PlayerMovement : MonoBehaviour,IData
 
             rb.velocity = Vector2.up * jumpPower;
             animator.SetBool("Jump", true);
+
+            am.Play("Jump");
         }
         else
         {
@@ -178,14 +182,18 @@ public class PlayerMovement : MonoBehaviour,IData
 
                 rb.velocity = Vector2.up * jumpPower;
                 animator.SetBool("Jump", true);
+
+                am.Play("Jump");
             }
 
-            if(multipleJump && availableJumps>0)
+            if(multipleJump && availableJumps > 0)
             {
                 availableJumps--;
 
                 rb.velocity = Vector2.up * jumpPower;
                 animator.SetBool("Jump", true);
+
+                am.Play("Jump");
             }
         }
     }

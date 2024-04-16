@@ -37,6 +37,7 @@ public class LevelSelectionManager : MonoBehaviour, IData
     [SerializeField] private Color32 selectedButtonColor;
     [SerializeField] private Button playButton;
     private TextMeshProUGUI playButtonText;
+    [SerializeField] private GameObject blackScreen;
     #endregion
 
     void Start()
@@ -50,6 +51,8 @@ public class LevelSelectionManager : MonoBehaviour, IData
             if(i < levelUnlocked) buttons[i].interactable = true;
             else if(i >= levelUnlocked) buttons[i].interactable = false;
         }
+
+        LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 1.0f, 0.0f, 0.8f);
     }
 
     public void LoadData(GameData gameData)
@@ -76,7 +79,7 @@ public class LevelSelectionManager : MonoBehaviour, IData
 
     public void SaveData(GameData gameData)
     {
-        Debug.Log("Save");
+        
     }
 
     public void SelectLevel(int index)
@@ -165,7 +168,9 @@ public class LevelSelectionManager : MonoBehaviour, IData
 
     public void GoToLevel() 
     {
-        if(isInTrialMode[tempIndex]) SceneManager.LoadScene("TrialCookingMode");
-        if(!isInTrialMode[tempIndex]) SceneManager.LoadScene("Level" + (tempIndex + 1).ToString());
+        if(isInTrialMode[tempIndex]) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("TrialCookingMode"));
+        if(!isInTrialMode[tempIndex]) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Level" + (tempIndex + 1).ToString()));
     }
+
+    private void UpdateBlackscreenAlpha(float alpha) => blackScreen.GetComponent<CanvasGroup>().alpha = alpha;
 }

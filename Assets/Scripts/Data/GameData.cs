@@ -1,7 +1,7 @@
 [System.Serializable]
 public class GameData
 {
-    #region CookingMode
+    #region ForCookingMode
     public float coinCount;
     public float initialTimeForTrial;
     public float cookingSpeed;
@@ -10,7 +10,7 @@ public class GameData
     public int highestProfit;
     #endregion
     
-    #region PlatformerMode
+    #region ForPlatformerMode
     public float posX, posY, posZ;
     public float healthCount;
     public float savedHealth;
@@ -30,15 +30,25 @@ public class GameData
     public bool[] fromTrialMode;
     #endregion
 
+    #region ForSetttings
+    public int fullscreenIndicator;
+    public float bgmVolume;
+    public float sfxVolume;
+    public float masterVolume;
+    #endregion
+
     public GameData()
     {
+        #region CookingMode
         coinCount = 0;
         initialTimeForTrial = 30.0f;
         cookingSpeed = 3.0f;
         cookingSpeedLevel = 1;
         cookingSpeedUpgradeCost = 3.0f;
         highestProfit = 0;
+        #endregion
         
+        #region PlatformerMode
         posX = 0.0f;
         posY = 0.0f;
         posZ = 0.0f;
@@ -58,5 +68,13 @@ public class GameData
         recipeCollected = new SerializableDictionary<string,bool>();
         isInTrialMode = new bool[6];
         fromTrialMode = new bool[6];
+        #endregion
+
+        #region Settings
+        fullscreenIndicator = 1;
+        bgmVolume = 0.5f;
+        sfxVolume = 1.0f;
+        masterVolume = 1.0f;
+        #endregion
     }
 }
