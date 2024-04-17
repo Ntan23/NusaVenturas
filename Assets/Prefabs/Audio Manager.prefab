@@ -45,6 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: d44bf809e43ff38418b00ad164be29dc, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    audioMixer: {fileID: 7245286736089202064, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
   - name: Cooking
     clip: {fileID: 8300000, guid: dc2f1aa1c9676dd49be83897dca15050, type: 3}
     volume: 1
@@ -118,6 +125,13 @@ MonoBehaviour:
   - name: WaterSplash
     clip: {fileID: 8300000, guid: dd6a55efb3b567747b1d3c53d2ba9bcc, type: 3}
     volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    audioMixer: {fileID: -6252703377895472749, guid: 032c8d8124ea3c9419150a6135950e86, type: 2}
+  - name: Hover
+    clip: {fileID: 8300000, guid: 993c1f3d011fc0e4bb9bb7ccf85336ef, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}

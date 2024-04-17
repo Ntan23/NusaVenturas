@@ -10,5 +10,5 @@ public class ButtonSFX : MonoBehaviour
     
     public void PlayClickSFX() => am.Play("Click");
 
-    
+    public void PlayHoverSFX() => am.Play("Hover");
 }
