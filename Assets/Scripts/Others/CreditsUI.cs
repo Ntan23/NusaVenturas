@@ -6,6 +6,7 @@ public class CreditsUI : MonoBehaviour
 {
     [SerializeField] private GameObject creditText;
     [SerializeField] private float textTimeToReachTheEnd;
+    [SerializeField] private float targetYLocation;
     private MainMenuManager mm;
 
     void Start() => mm = MainMenuManager.instance;
@@ -19,7 +20,7 @@ public class CreditsUI : MonoBehaviour
        
         LeanTween.value(gameObject, UpdateAlpha, 0.0f, 1.0f, 0.5f).setOnComplete(() =>
         {
-            LeanTween.moveLocalY(creditText, 1256.0f, textTimeToReachTheEnd).setLoopClamp();
+            LeanTween.moveLocalY(creditText, targetYLocation, textTimeToReachTheEnd).setLoopClamp();
             GetComponent<CanvasGroup>().interactable = true;
         });
     }
@@ -34,7 +35,7 @@ public class CreditsUI : MonoBehaviour
             GetComponent<CanvasGroup>().blocksRaycasts = false;
             mm.CloseShopOrOtherWindow();
         });
-        creditText.transform.localPosition = new Vector3(0.0f, -1231.0f, 0.0f);
+        creditText.transform.localPosition = new Vector3(0.0f, -targetYLocation, 0.0f);
     }
 }
 

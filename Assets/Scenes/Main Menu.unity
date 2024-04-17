@@ -13563,38 +13563,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<color=yellow><size=100><b><u>Game Designer</u></b></size></color>
-
-    Vito
-    Sebastian Sanjaya
-
-
-    <color=yellow><size=100><b><u>Game Artist</u></b></size></color>
-
-    Nicholas
-    Valenthinus Tanoto
-
-
-    <color=yellow><size=100><b><u>Game Programmer</u></b></size></color>
-
-    Nicholas
-    Tandinata
-
-
-    <color=yellow><size=100><b><u>Supervisor</u></b></size></color>
-
-    Dimas
-    Ramdhan
-
-
-    <color=yellow><size=100><b><u>SFX</u></b></size></color>
-
-    Zapslat.com
-
-
-    <color=yellow><size=70><b><u>BGM</u></b></size></color>
-
-    ????'
+  m_text: "<color=yellow><size=100><b><u>Game Designer</u></b></size></color>\nVito
+    Sebastian Sanjaya\n\n<color=yellow><size=100><b><u>Game Artist</u></b></size></color>\nNicholas
+    Valenthinus Tanoto\n\n<color=yellow><size=100><b><u>Game Programmer</u></b></size></color>\nNicholas
+    Tandinata\n\n<color=yellow><size=100><b><u>Supervisor</u></b></size></color>\nDimas
+    Ramdhan\n\n<color=yellow><size=100><b><u>Other Asset</u></b></size></color>\n2D
+    Hand Painted Platformer Environment by <u>STR</u> \n\n<color=yellow><size=100><b><u>SFX</u></b></size></color>\nZapslat.com\n\n<color=yellow><size=100><b><u>BGM</u></b></size></color>\nAmbient
+    Gamelan Music By <u>Yudhistira Arianto</u>\n\n<color=yellow><size=100><b><u>Font</u></b></size></color>\nBangers
+    SDF"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -13688,8 +13664,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1231}
-  m_SizeDelta: {x: 725.0432, y: 1443.0513}
+  m_AnchoredPosition: {x: 0, y: -1522}
+  m_SizeDelta: {x: 936.3481, y: 1963.9185}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1334847237
 GameObject:
@@ -16523,7 +16499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditText: {fileID: 1332347576}
-  textTimeToReachTheEnd: 25
+  textTimeToReachTheEnd: 20
+  targetYLocation: 1522
 --- !u!225 &1596368672
 CanvasGroup:
   m_ObjectHideFlags: 0
