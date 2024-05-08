@@ -18536,7 +18536,7 @@ MonoBehaviour:
   - {fileID: 1088731658}
   - {fileID: 1544680448}
   speed: 2
-  platform: {fileID: 524756269}
+  objects: {fileID: 524756269}
   idleMode: 1
 --- !u!1 &1214344005
 GameObject:
@@ -19029,7 +19029,7 @@ MonoBehaviour:
   - {fileID: 405049527}
   - {fileID: 415012391}
   speed: 2
-  platform: {fileID: 1826930447}
+  objects: {fileID: 1826930447}
   idleMode: 1
 --- !u!1 &1235847336
 GameObject:
@@ -21907,7 +21907,7 @@ MonoBehaviour:
   - {fileID: 1176736266}
   - {fileID: 544954994}
   speed: 2
-  platform: {fileID: 888540677}
+  objects: {fileID: 0}
   idleMode: 1
 --- !u!1 &1465528269
 GameObject:

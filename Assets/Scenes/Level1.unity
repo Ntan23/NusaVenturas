@@ -16034,7 +16034,7 @@ MonoBehaviour:
   - {fileID: 405049527}
   - {fileID: 415012391}
   speed: 2
-  platform: {fileID: 1826930447}
+  objects: {fileID: 1826930447}
   idleMode: 1
 --- !u!1 &1235847336
 GameObject:

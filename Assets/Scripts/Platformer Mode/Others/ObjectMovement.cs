@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformMovement : MonoBehaviour
+public class ObjectMovement : MonoBehaviour
 {
-    public List<Transform> positions;
-    public float speed = 2;
-    public Transform platform;
+    [SerializeField] private List<Transform> positions;
+    [SerializeField] private float speed = 2;
+    [SerializeField] private Transform objects;
     bool firstTime;
     [SerializeField] bool idleMode;
     float idleTimer;
@@ -29,22 +29,22 @@ public class PlatformMovement : MonoBehaviour
 
         if(idleMode)
         {
-            if(Vector2.Distance(platform.transform.position,goalpos.position) > 0)
+            if(Vector2.Distance(objects.transform.position,goalpos.position) > 0)
             {
                 MovingToNextPos();
             }
-            else if(Vector2.Distance(platform.transform.position,goalpos.position) == 0)
+            else if(Vector2.Distance(objects.transform.position,goalpos.position) == 0)
             {
                 ChangeDirectionWithIdle();
             }
         }
         else if(!idleMode)
         {
-            if(Vector2.Distance(platform.transform.position,goalpos.position) > 0)
+            if(Vector2.Distance(objects.transform.position,goalpos.position) > 0)
             {
                 MovingToNextPos();
             }
-            else if(Vector2.Distance(platform.transform.position,goalpos.position) == 0)
+            else if(Vector2.Distance(objects.transform.position,goalpos.position) == 0)
             {
                 ChangeDirectionWithoutIdle();
             }
@@ -58,7 +58,7 @@ public class PlatformMovement : MonoBehaviour
             idleTimer = 0;
         }
         // Change platform position toward the goalPos
-        platform.position = Vector2.MoveTowards(platform.position,goalpos.position,Time.deltaTime*speed);
+        objects.position = Vector2.MoveTowards(objects.position,goalpos.position,Time.deltaTime*speed);
     }
 
     void ChangeDirectionWithIdle()
