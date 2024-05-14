@@ -10755,7 +10755,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858455184}
-  m_LocalRotation: {x: -0, y: -0, z: 0.4774021, w: 0.878685}
+  m_LocalRotation: {x: 0, y: 0, z: 0.47740415, w: 0.8786838}
   m_LocalPosition: {x: 4.4672456, y: 1.3973694, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
@@ -12428,7 +12428,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949466266}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3684509, w: 0.9296472}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3684491, w: 0.9296479}
   m_LocalPosition: {x: 4.939604, y: -0.3174057, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
@@ -12894,7 +12894,7 @@ Transform:
   m_GameObject: {fileID: 968249351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.636, y: 1.174, z: 0}
-  m_LocalScale: {x: 1.5000005, y: 1.6000003, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.6000003, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1056669707}
@@ -19688,8 +19688,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056669706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.24, y: 0.23, z: 0}
+  m_LocalPosition: {x: -0.00090003, y: 0.023, z: 0}
+  m_LocalScale: {x: 0.23099999, y: 0.24, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1080440715}
@@ -19717,8 +19717,8 @@ MonoBehaviour:
   - {fileID: 949466267}
   - {fileID: 858455185}
   m_Bounds:
-    m_Center: {x: -0.014369965, y: 0.015456915, z: 0}
-    m_Extent: {x: 2.7377577, y: 2.9406626, z: 0}
+    m_Center: {x: -0.014373779, y: 0.0154562, z: 0}
+    m_Extent: {x: 2.7377622, y: 2.9406657, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -25930,7 +25930,7 @@ SpriteRenderer:
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 6251c494b8606c142af74079e029af7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.0584795, y: 1.2163743}
@@ -27179,7 +27179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rendang
+  m_text: Kalumpe
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -29858,7 +29858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4e89ab1d9334bd340815f7b1ab3a6a42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 201a2dd19034deb4fb5f71c47ca6a426, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -31375,7 +31375,7 @@ Transform:
   m_GameObject: {fileID: 1879166016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.277, y: 0.656, z: 0}
-  m_LocalScale: {x: 1.5000005, y: 1.6000003, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.6000003, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1056669707}
