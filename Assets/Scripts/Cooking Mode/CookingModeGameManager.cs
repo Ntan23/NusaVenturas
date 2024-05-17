@@ -96,6 +96,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
         
         for(int i = 0; i < foods.Length; i++) 
         {
+            Debug.Log(foods[i].isUnlocked);
+
             if(foods[i].isUnlocked) availableFoods.Add(foods[i]);
             if(!foods[i].isUnlocked) continue;
         }
@@ -114,6 +116,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     public void LoadData(GameData gameData) 
     {
+        Debug.Log("Loaded");
+
         if(endlessMode) this.highestProfit = gameData.highestProfit;
         if(!endlessMode) 
         {
@@ -124,7 +128,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
         this.cookingSpeed = gameData.cookingSpeed;
 
-        availableFoods = new List<FoodSO>();
+        this.availableFoods = new List<FoodSO>();
         
         for(int i = 0; i < foods.Length; i++)
         {
@@ -186,6 +190,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     public void GoToMainMenu() 
     {
+        am.Stop("Cooking");
         Time.timeScale = 1.0f;
 
         LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("Main Menu"));
@@ -363,6 +368,8 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     private void CompleteGame()
     {
+        am.Stop("Cooking");
+        
         if(!endlessMode)
         {
             isCompleted = true;

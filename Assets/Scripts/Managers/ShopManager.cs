@@ -166,8 +166,6 @@ public class ShopManager : MonoBehaviour, IData
             jumpPowerUpgradeCost *= 1.5f;
         }
 
-        coinCount = 100;
-
         UpdateShopUI();
     }
 
@@ -261,7 +259,7 @@ public class ShopManager : MonoBehaviour, IData
         {   
             upgradeInfoText[2].text = $"<color=red><u>Jump Power </u><size=16>[ Lv {jumpLevel.ToString()} / {maxLevel.ToString()} ]\n</size></color><color=green>Current : {jumpPower.ToString()}\n</color><color=orange>Upgraded : {nextJumpPower.ToString()}</color>";
             
-            upgradeCostText[2].text = healthUpgradeCost.ToString("0.00");
+            upgradeCostText[2].text = jumpPowerUpgradeCost.ToString("0.00");
         }
 
         if(jumpLevel == maxLevel)
@@ -278,7 +276,7 @@ public class ShopManager : MonoBehaviour, IData
         {   
             upgradeInfoText[3].text = $"<color=red><u>Cooking Time </u><size=16>[ Lv {cookingSpeedLevel.ToString()} / {maxLevel.ToString()} ]\n</size></color><color=green>Current : {cookingSpeed.ToString()} s\n</color><color=orange>Upgraded : {nextCookingSpeed.ToString()} s</color>";
             
-            upgradeCostText[3].text = healthUpgradeCost.ToString("0.00");
+            upgradeCostText[3].text = cookingSpeedUpgradeCost.ToString("0.00");
         }
 
         if(cookingSpeedLevel == maxLevel)

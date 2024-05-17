@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Sate Buntel
   foodRecipeID: 2
-  foodOrigin: Jawa Tengah
+  foodOrigin: Central Java
   foodID: 2068
   foodPrice: 2
   foodSpriteWithFrame: {fileID: 21300000, guid: 45790e9641a8fb245a338dffc38454b6, type: 3}

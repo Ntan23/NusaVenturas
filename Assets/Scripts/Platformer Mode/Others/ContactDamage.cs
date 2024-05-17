@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ContactDamage : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerHealth playerHealth;
+    private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
+
+    void Start()
+    {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+    }
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {

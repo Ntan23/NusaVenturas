@@ -2276,7 +2276,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 972348935}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: UpgradeJumpPower
         m_Mode: 1
@@ -4716,7 +4716,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 972348935}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: UpgradeHealth
         m_Mode: 1
@@ -5535,7 +5535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05b20435f36a6004fa85fd6c86df0494, type: 3}
+  m_Sprite: {fileID: -1940207152, guid: 8f33b5e1f577ecd43b172ab778ce8c19, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6813,7 +6813,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05b20435f36a6004fa85fd6c86df0494, type: 3}
+  m_Sprite: {fileID: -1940207152, guid: 8f33b5e1f577ecd43b172ab778ce8c19, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11169,7 +11169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05b20435f36a6004fa85fd6c86df0494, type: 3}
+  m_Sprite: {fileID: -1940207152, guid: 8f33b5e1f577ecd43b172ab778ce8c19, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -12462,7 +12462,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 972348935}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: UpgradeCookingSpeed
         m_Mode: 1
@@ -15574,7 +15574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05b20435f36a6004fa85fd6c86df0494, type: 3}
+  m_Sprite: {fileID: -1940207152, guid: 8f33b5e1f577ecd43b172ab778ce8c19, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -19768,7 +19768,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 972348935}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: UpgradeImmunityTime
         m_Mode: 1
@@ -26807,8 +26807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9abbca1c51455d41ae451c95d62b286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  playerHealth: {fileID: 0}
 --- !u!4 &4821185978874903153
 Transform:
   m_ObjectHideFlags: 0

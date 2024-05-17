@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Kalumpe
   foodRecipeID: 3
-  foodOrigin: Kalimantan Tengah
+  foodOrigin: Central Kalimantan
   foodID: 3137
   foodPrice: 2
   foodSpriteWithFrame: {fileID: 21300000, guid: 201a2dd19034deb4fb5f71c47ca6a426, type: 3}

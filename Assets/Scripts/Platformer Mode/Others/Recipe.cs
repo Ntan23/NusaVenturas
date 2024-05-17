@@ -8,10 +8,16 @@ public class Recipe : MonoBehaviour, IData
     private bool collected = false;
     private bool flag;
     private int collectedRecipeCount;
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private PlayerHealth playerHealth;
+    private Transform playerTransform;
+    private PlayerHealth playerHealth;
     private float posX, posY, posZ;
     private float healthCount;
+
+    void Start()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+    }
 
     public void LoadData(GameData gameData) 
     {
@@ -31,7 +37,7 @@ public class Recipe : MonoBehaviour, IData
         if(gameData.recipeCollected.ContainsKey(id)) gameData.recipeCollected.Remove(id);
         
         gameData.recipeCollected.Add(id,collected);
-   
+
         gameData.collectedRecipeCount = this.collectedRecipeCount;
         
         if(!flag) 

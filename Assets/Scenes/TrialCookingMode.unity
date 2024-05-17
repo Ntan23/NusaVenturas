@@ -4275,7 +4275,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 852703801}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999888
+  m_Size: 0.99999875
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5640,11 +5640,11 @@ MonoBehaviour:
   endlessMode: 0
   foods:
   - {fileID: 11400000, guid: 406415977f045564092dbc20df381561, type: 2}
-  - {fileID: 11400000, guid: 2dbe16b5c6421b4498027d3dd3b4dd95, type: 2}
+  - {fileID: 11400000, guid: 14c5960f81b2eb842b669412af0c938a, type: 2}
   - {fileID: 11400000, guid: 846049101d39aec41b8bd1ba6ebcc30c, type: 2}
   - {fileID: 11400000, guid: 67c04816ae5af2d498b532afa17b1643, type: 2}
   - {fileID: 11400000, guid: 3e0cf3036249e3442b0bdc5ab6f427d0, type: 2}
-  - {fileID: 11400000, guid: 14c5960f81b2eb842b669412af0c938a, type: 2}
+  - {fileID: 11400000, guid: 2dbe16b5c6421b4498027d3dd3b4dd95, type: 2}
   orderName: {fileID: 585435851}
   orderFoodImage: {fileID: 618644108}
   orderFoodOrigin: {fileID: 1639510925}
@@ -7225,7 +7225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000051704556, y: 0}
+  m_AnchoredPosition: {x: -0.000009775384, y: 0}
   m_SizeDelta: {x: -1465.8, y: 231.0087}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &984398997

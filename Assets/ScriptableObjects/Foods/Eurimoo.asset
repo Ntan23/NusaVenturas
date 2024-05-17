@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Eurimoo
   foodRecipeID: 6
-  foodOrigin: Papua Tengah
+  foodOrigin: Central Papua
   foodID: 3044
   foodPrice: 2
   foodSpriteWithFrame: {fileID: 21300000, guid: 18e237984eda6af41ab558b00637b853, type: 3}
