@@ -71,12 +71,15 @@ public class CookingModeGameManager : MonoBehaviour, IData
     [SerializeField] private Settings settings;
     private bool canBePressed = true;
     private bool isPaused;
+    private bool isFirstTime;
     private AudioManager am;
     #endregion
 
     void Start()
     {
         am = AudioManager.instance;
+
+        isFirstTime = true;
 
         cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
@@ -234,7 +237,18 @@ public class CookingModeGameManager : MonoBehaviour, IData
     {
         if(availableFoods != null)
         {
-            randomIndex = Random.Range(0, availableFoods.Count);
+            if(!endlessMode) 
+            {
+                if(isFirstTime) 
+                {
+                    randomIndex = levelIndex - 1;
+
+                    isFirstTime = false;
+                }
+                if(!isFirstTime) randomIndex = Random.Range(0, availableFoods.Count);
+            }
+
+            if(endlessMode) randomIndex = Random.Range(0, availableFoods.Count);
 
             currentFoodOrder = availableFoods[randomIndex];
 

@@ -77,6 +77,12 @@ public class DataManager : MonoBehaviour
         dataHandler.Save(gameData);
     }
 
+    public void ResetData()
+    {
+        dataHandler.DeleteData();
+        LoadGame();
+    }
+
     private void OnApplicationQuit() => SaveGame();
     
     private List<IData> FindAllDataObjects() 

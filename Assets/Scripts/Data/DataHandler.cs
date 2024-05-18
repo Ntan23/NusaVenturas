@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using UnityEditor;
 
 public class DataHandler
 {
@@ -11,9 +12,8 @@ public class DataHandler
     private string dataPath = "";
     private string dataName = "";
     private bool useAESEncryption = false;
-    public bool newData = false;
 
-    public DataHandler(string dataPath, string dataName, bool useAESEncryption)//,bool useXOREncryption) 
+    public DataHandler(string dataPath, string dataName, bool useAESEncryption)
     {
         this.dataPath = dataPath;
         this.dataName = dataName;
@@ -22,7 +22,6 @@ public class DataHandler
 
     public GameData Load() 
     {
-        // use Path.Combine to account for different OS's having different path separators
         string fullPath = Path.Combine(dataPath,dataName);
 
         GameData loadedData = null;
@@ -47,26 +46,15 @@ public class DataHandler
                     keyString = Security.DecryptKey(PlayerPrefs.GetString("??"));
                     ivString = Security.DecryptIV(PlayerPrefs.GetString("!!"));
 
-                    // Debug.Log("Decrypt Key String : " + keyString);
-                    // Debug.Log("Decrypt IV String : " + ivString);
-
                     byte[] decrypted = File.ReadAllBytes(fullPath);
                     dataToLoad = Security.DecryptUsingAES(decrypted,keyString,ivString);
 
                     keyString = Security.RandomKeyGenerator();
                     ivString = Security.RandomIVGenerator();
-                    
-                    // Debug.Log("New Key String : " + keyString);
-                    // Debug.Log("New IV String : " + ivString);
 
                     PlayerPrefs.SetString("??",Security.EncryptKey(keyString));
                     PlayerPrefs.SetString("!!",Security.EncryptIV(ivString));
                 }
-
-                // if (useXOREncryption)
-                // {
-                //     dataToLoad = Security.EncryptDecryptUsingXOR(dataToLoad);
-                // }
 
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
@@ -82,7 +70,7 @@ public class DataHandler
     public void Save(GameData data) 
     {
         // use Path.Combine to account for different OS's having different path separators
-        string fullPath = Path.Combine(dataPath,dataName);
+        string fullPath = Path.Combine(dataPath, dataName);
         
         try 
         {
@@ -121,5 +109,16 @@ public class DataHandler
         {
             Debug.LogError("Error occured when trying to save data to file: " + fullPath + "\n" + e);
         }
+    }
+
+    public void DeleteData()
+    {
+        Debug.Log("Delete");
+        string fullPath = Path.Combine(dataPath, dataName);
+        File.Delete(fullPath);
+        
+        #if UNITY_EDITOR
+		UnityEditor.AssetDatabase.Refresh();
+		#endif
     }
 }

@@ -15,19 +15,6 @@ public static class Security
     const string keyString = "NusaVenturas_A_2D_Platformer_Game[!24`5%$#~43e`5]";
     const string keyString2 = "Time_Management_Cooking_Game[najn!~a67^%$31567820]";
 
-    // private static readonly string XORencryptionCode = "ahu.,?;a56%$#1&*^||][:,magvxhn*@!~";
-    // public static string EncryptDecryptUsingXOR(string data) 
-    // {
-    //     string modifiedData = "";
-
-    //     for (int i = 0; i < data.Length; i++) 
-    //     {
-    //         modifiedData += (char)(data[i] ^ XORencryptionCode[i % XORencryptionCode.Length]);
-    //     }
-
-    //     return modifiedData;
-    // }
-
     public static byte[] EncryptUsingAES(string data,string key,string IV)
     {
         byte[] encrypted = null;
@@ -41,9 +28,6 @@ public static class Security
             {
                 myAes.Key = keyBytes;
                 myAes.IV = iv;
-
-                // Debug.Log("Encrypt Key : "+ PrintBytes(myAes.Key));
-                // Debug.Log("Encrypt IV : " + PrintBytes(myAes.IV));
 
                 // Encrypt the string to an array of bytes.
                 encrypted = EncryptStringToBytes(data,myAes.Key,myAes.IV);
@@ -70,9 +54,6 @@ public static class Security
             {
                 myAes.Key = keyBytes;
                 myAes.IV = iv;
-
-                // Debug.Log("Decrypt Key : "+ PrintBytes(myAes.Key));
-                // Debug.Log("Decrypt IV : " + PrintBytes(myAes.IV));
                     
                 // Decrypt the bytes to a string.
                 result = DecryptStringFromBytes(bytes,myAes.Key,myAes.IV);
@@ -206,9 +187,6 @@ public static class Security
         GenerateIVBytes();
         GenerateKeyBytes();
 
-        //Debug.Log("Encrypted Key For Key : " + PrintBytes(keyBytes));
-        //Debug.Log("Encrypted IV For Key : " + PrintBytes(ivBytes));
-
         SymmetricAlgorithm algorithm = Aes.Create();
         ICryptoTransform transform = algorithm.CreateEncryptor(keyBytes,ivBytes);
         byte[] inputBuffer = Encoding.Unicode.GetBytes(text);
@@ -231,9 +209,6 @@ public static class Security
         byte [] extractedivBytes = Encoding.Unicode.GetBytes(ivString);
  
         string encryptedString = text.Substring(endOfIVBytes);
-
-        // Debug.Log("Decrypted Key For Key : " + PrintBytes(keyBytes));
-        // Debug.Log("Decrypted IV For Key : " + PrintBytes(extractedivBytes));
 
         SymmetricAlgorithm algorithm = Aes.Create();
         ICryptoTransform transform = algorithm.CreateDecryptor(keyBytes,extractedivBytes);
@@ -269,9 +244,6 @@ public static class Security
         GenerateIVBytes2();
         GenerateKeyBytes2();
 
-        // Debug.Log("Encrypted Key For IV : " + PrintBytes(keyBytes2));
-        // Debug.Log("Encrypted IV For IV : " + PrintBytes(ivBytes2));
-
         SymmetricAlgorithm algorithm = Aes.Create();
         ICryptoTransform transform = algorithm.CreateEncryptor(keyBytes2,ivBytes2);
         byte[] inputBuffer = Encoding.Unicode.GetBytes(text);
@@ -294,9 +266,6 @@ public static class Security
         byte [] extractedivBytes = Encoding.Unicode.GetBytes(ivString);
  
         string encryptedString = text.Substring(endOfIVBytes);
-
-        // Debug.Log("Decrypted Key For IV : " + PrintBytes(keyBytes2));
-        // Debug.Log("Decrypted IV For IV : " + PrintBytes(extractedivBytes));
 
         SymmetricAlgorithm algorithm = Aes.Create();
         ICryptoTransform transform = algorithm.CreateDecryptor(keyBytes2,extractedivBytes);

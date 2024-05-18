@@ -95,6 +95,9 @@ public class ShopManager : MonoBehaviour, IData
 
     public void OpenShopWindow() 
     {
+        UpdateShopUI();
+        UpdateCoinTextUI();
+        
         if(!isOpen)
         {
             isOpen = true;
@@ -213,7 +216,7 @@ public class ShopManager : MonoBehaviour, IData
 
     private void UpdateCoinTextUI() => coinsText.text = coinCount.ToString("0.00");
 
-    private void UpdateShopUI()
+    public void UpdateShopUI()
     {
         if(coinCount < healthUpgradeCost) upgradeButton[0].interactable = false;
         if(coinCount < immunityTimeUpgradeCost) upgradeButton[1].interactable = false;
