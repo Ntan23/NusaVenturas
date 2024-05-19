@@ -6,6 +6,15 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour, IData
 {
+    #region Singleton
+    public static ShopManager instance;
+
+    void Awake()
+    {
+        if(instance == null) instance = this;
+    } 
+    #endregion
+
     #region Variables
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerHealth playerHealth;
@@ -54,7 +63,7 @@ public class ShopManager : MonoBehaviour, IData
         nextImmunityTime = immunityTime + 0.5f;
         nextJumpPower = jumpPower + 0.5f;
         nextHealth = healthCount + 1.0f;
-
+        
         UpdateCoinTextUI();
         UpdateShopUI();
     }
@@ -218,10 +227,12 @@ public class ShopManager : MonoBehaviour, IData
 
     public void UpdateShopUI()
     {
+        #region Button
         if(coinCount < healthUpgradeCost) upgradeButton[0].interactable = false;
         if(coinCount < immunityTimeUpgradeCost) upgradeButton[1].interactable = false;
         if(coinCount < jumpPowerUpgradeCost) upgradeButton[2].interactable = false;
         if(coinCount < cookingSpeedUpgradeCost) upgradeButton[3].interactable = false;
+        #endregion
 
         #region Health
         if(healthLevel < maxLevel) 
@@ -290,5 +301,17 @@ public class ShopManager : MonoBehaviour, IData
             maxButton[3].SetActive(true);
         }
         #endregion
+    }
+
+    public void ResetShop()
+    {
+        foreach(GameObject btn in maxButton) btn.SetActive(false);
+
+        for(int i = 0; i < upgradeButton.Length; i++) if(!upgradeButton[i].gameObject.activeInHierarchy) upgradeButton[i].gameObject.SetActive(true);
+    
+        nextCookingSpeed = cookingSpeed - 0.5f;
+        nextImmunityTime = immunityTime + 0.5f;
+        nextJumpPower = jumpPower + 0.5f;
+        nextHealth = healthCount + 1.0f;
     }
 }

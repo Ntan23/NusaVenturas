@@ -64,22 +64,20 @@ public class CookingModeGameManager : MonoBehaviour, IData
     [Header("Trial")]
     [SerializeField] private TextMeshProUGUI coinCountText;
     [SerializeField] private GameObject completedFoodImage;
-    private int highestProfit;
-    private int currentProfit;
+    private float highestProfit;
+    private float currentProfit;
     [Header("Others")]
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private Settings settings;
     private bool canBePressed = true;
     private bool isPaused;
-    private bool isFirstTime;
+    private bool isFirstTime = true;
     private AudioManager am;
     #endregion
 
     void Start()
     {
         am = AudioManager.instance;
-
-        isFirstTime = true;
 
         cookingAnimator = cookingIndicator.GetComponent<Animator>();
 
@@ -99,8 +97,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
         
         for(int i = 0; i < foods.Length; i++) 
         {
-            Debug.Log(foods[i].isUnlocked);
-
             if(foods[i].isUnlocked) availableFoods.Add(foods[i]);
             if(!foods[i].isUnlocked) continue;
         }
@@ -119,8 +115,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     public void LoadData(GameData gameData) 
     {
-        Debug.Log("Loaded");
-
         if(endlessMode) this.highestProfit = gameData.highestProfit;
         if(!endlessMode) 
         {
@@ -168,7 +162,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
         if(currentTime <= 0)
         {
-            Debug.Log("You Have Complete The Game");
             CompleteGame();
             return;
         }
@@ -239,13 +232,14 @@ public class CookingModeGameManager : MonoBehaviour, IData
         {
             if(!endlessMode) 
             {
+                if(!isFirstTime) randomIndex = Random.Range(0, availableFoods.Count);
+                
                 if(isFirstTime) 
                 {
                     randomIndex = levelIndex - 1;
 
                     isFirstTime = false;
                 }
-                if(!isFirstTime) randomIndex = Random.Range(0, availableFoods.Count);
             }
 
             if(endlessMode) randomIndex = Random.Range(0, availableFoods.Count);
@@ -258,8 +252,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
             //ingredients.text = currentFoodOrder.foodIngredients;
             orderFoodIngredients.sprite = currentFoodOrder.foodIngredientsSprite;
             orderFoodPriceText.text = "+ " + currentFoodOrder.foodPrice.ToString("0.00");
-
-            Debug.Log(currentFoodOrder.foodID);
         }
     }
 
@@ -287,8 +279,6 @@ public class CookingModeGameManager : MonoBehaviour, IData
 
     public void CookFood()
     {
-        Debug.Log(currentOrderID);
-
         if(currentOrderID != currentFoodOrder.foodID) TrashFood();
         else if(currentOrderID == currentFoodOrder.foodID) StartCoroutine(Cook());
     }
@@ -387,7 +377,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(!endlessMode)
         {
             isCompleted = true;
-            initialTimeForTrial += 10.0f;
+            initialTimeForTrial += 5.0f;
 
             SceneManager.LoadScene("Level" + levelIndex.ToString());
         }
@@ -406,7 +396,9 @@ public class CookingModeGameManager : MonoBehaviour, IData
             completedFoodImage.transform.position = Vector3.zero;
 
             cookButton.SetActive(true);
+            
             if(endlessMode) currentTime += 10;
+            
             UpdateTimerBar();
         });
     }

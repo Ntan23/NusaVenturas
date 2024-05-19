@@ -7,7 +7,7 @@ public class GameData
     public float cookingSpeed;
     public int cookingSpeedLevel;
     public float cookingSpeedUpgradeCost;
-    public int highestProfit;
+    public float highestProfit;
     #endregion
     
     #region ForPlatformerMode
@@ -44,7 +44,7 @@ public class GameData
         initialTimeForTrial = 30.0f;
         cookingSpeed = 3.0f;
         cookingSpeedLevel = 1;
-        cookingSpeedUpgradeCost = 3.0f;
+        cookingSpeedUpgradeCost = 4.0f;
         highestProfit = 0;
         #endregion
         
@@ -58,10 +58,10 @@ public class GameData
         healthUpgradeCost = 4.0f;
         immunityTime = 1.0f;
         immunityLevel = 1;
-        immunityTimeUpgradeCost = 5.0f;
+        immunityTimeUpgradeCost = 6.0f;
         jumpPower = 6.5f;
         jumpLevel = 1;
-        jumpPowerUpgradeCost = 2.5f;
+        jumpPowerUpgradeCost = 2.0f;
         levelUnlocked = 1;
         levelIndex = 1;
         collectedRecipeCount = 0;

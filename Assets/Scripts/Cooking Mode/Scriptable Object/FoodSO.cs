@@ -9,7 +9,7 @@ public class FoodSO : ScriptableObject
     public string foodRecipeID;
     public string foodOrigin;
     public int foodID;
-    public int foodPrice;
+    public float foodPrice;
     public Sprite foodSpriteWithFrame;
     public Sprite foodSpriteWithoutFrame;
     [TextArea(3,10)]

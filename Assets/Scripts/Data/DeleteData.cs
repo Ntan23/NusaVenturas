@@ -5,8 +5,17 @@ using UnityEngine;
 public class DeleteData : MonoBehaviour
 {
     private DataManager dm;
+    private ShopManager sm;
 
-    void Start() => dm = DataManager.instance;
+    void Start() 
+    {
+        dm = DataManager.instance;
+        sm = ShopManager.instance;
+    }
 
-    public void DeleteGameData() => dm.ResetData();
+    public void DeleteGameData() 
+    {
+        dm.ResetData();
+        sm.ResetShop();
+    }
 }

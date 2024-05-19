@@ -113,7 +113,6 @@ public class DataHandler
 
     public void DeleteData()
     {
-        Debug.Log("Delete");
         string fullPath = Path.Combine(dataPath, dataName);
         File.Delete(fullPath);
         

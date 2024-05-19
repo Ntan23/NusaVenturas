@@ -16,7 +16,7 @@ MonoBehaviour:
   foodRecipeID: 3
   foodOrigin: Central Kalimantan
   foodID: 3137
-  foodPrice: 2
+  foodPrice: 2.5
   foodSpriteWithFrame: {fileID: 21300000, guid: 201a2dd19034deb4fb5f71c47ca6a426, type: 3}
   foodSpriteWithoutFrame: {fileID: 21300000, guid: 282d4d9e49e501947aa0ff9e2953127c, type: 3}
   foodIngredients: '- Daun Singkong

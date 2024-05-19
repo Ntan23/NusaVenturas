@@ -16,7 +16,7 @@ MonoBehaviour:
   foodRecipeID: 2
   foodOrigin: Central Java
   foodID: 2068
-  foodPrice: 2
+  foodPrice: 3.5
   foodSpriteWithFrame: {fileID: 21300000, guid: 45790e9641a8fb245a338dffc38454b6, type: 3}
   foodSpriteWithoutFrame: {fileID: 21300000, guid: 6eb398c8607a68849b2d64f57d215034, type: 3}
   foodIngredients: "- Daging Kambing\n- Bawang merah\n- Margarin\n- Garam\n- Merica

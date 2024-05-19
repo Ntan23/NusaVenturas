@@ -46,7 +46,7 @@ public class MainMenuManager : MonoBehaviour, IData
 
             LeanTween.moveLocalY(errorPopUp, 430.0f, 0.5f).setOnComplete(() => StartCoroutine(ShowErrorPopUp()));
         }
-        if(collectedRecipeCount == 6) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("EndlessCookingMode"));
+        if(collectedRecipeCount == 6) LeanTween.value(blackScreen, UpdateBlackscreenAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => SceneManager.LoadScene("EndlessCookingMode2"));
     }
 
     IEnumerator ShowErrorPopUp()

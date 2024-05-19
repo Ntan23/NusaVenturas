@@ -203,11 +203,16 @@ public class GameManager : MonoBehaviour, IData
 
         if(levelUnlocked == levelIndex) levelUnlocked++;
 
-        LeanTween.value(winUIWindow, UpdateWinUIWindowAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => 
+        if(levelIndex == 6) GoToMainMenu();
+
+        if(levelIndex < 6)
         {
-            winUIWindow.GetComponent<CanvasGroup>().interactable = true;
-            winUIWindow.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        });
+            LeanTween.value(winUIWindow, UpdateWinUIWindowAlpha, 0.0f, 1.0f, 0.8f).setOnComplete(() => 
+            {
+                winUIWindow.GetComponent<CanvasGroup>().interactable = true;
+                winUIWindow.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            });
+        }
     }
 
     private void UpdateRecipeWindowAlpha(float alpha) => recipeWindow.GetComponent<CanvasGroup>().alpha = alpha; 
