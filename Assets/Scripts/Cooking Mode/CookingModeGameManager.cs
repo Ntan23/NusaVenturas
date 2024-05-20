@@ -377,7 +377,7 @@ public class CookingModeGameManager : MonoBehaviour, IData
         if(!endlessMode)
         {
             isCompleted = true;
-            initialTimeForTrial += 5.0f;
+            initialTimeForTrial += 8.0f;
 
             SceneManager.LoadScene("Level" + levelIndex.ToString());
         }

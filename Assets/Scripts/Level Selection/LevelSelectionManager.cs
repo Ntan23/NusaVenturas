@@ -108,19 +108,11 @@ public class LevelSelectionManager : MonoBehaviour, IData
         {
             buttons[index].GetComponent<Image>().color = selectedButtonColor;
             
-            if(index != 5) 
-            {
-                LeanTween.scale(buttons[index].gameObject, new Vector3(1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
+            if(index != 5) panel.transform.GetChild(0).transform.localScale = Vector3.one;
+            
 
-                panel.transform.GetChild(0).transform.localScale = Vector3.one;
-            }
-
-            if(index == 5)
-            {
-                LeanTween.scale(buttons[index].gameObject, new Vector3(-1.2f, 1.2f, 1.2f), 0.3f).setEaseSpring();
-
-                panel.transform.GetChild(0).transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-            }
+            if(index == 5) panel.transform.GetChild(0).transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            
 
             LeanTween.scaleX(panel, 1.0f, 0.5f).setEaseInOutExpo().setOnComplete(() => {
                 playButton.interactable = true;
@@ -137,15 +129,11 @@ public class LevelSelectionManager : MonoBehaviour, IData
 
             if(tempIndex != 5) 
             {
-                LeanTween.scale(buttons[tempIndex].gameObject, Vector3.one, 0.3f).setEaseSpring();
-
-                if(index == 5) panel.transform.GetChild(0).transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                if(index == 5) panel.transform.GetChild(0).transform.localScale = new Vector3(-1.2f, 1.2f, 1.2f);
             }
 
             if(tempIndex == 5) 
             {
-                LeanTween.scale(buttons[tempIndex].gameObject, new Vector3(-1.0f, 1.0f, 1.0f), 0.3f).setEaseSpring();
-
                 if(index != 5) panel.transform.GetChild(0).transform.localScale = Vector3.one;
             }
 

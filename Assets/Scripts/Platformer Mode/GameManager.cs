@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour, IData
 
     IEnumerator ViewRecipe()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(2.0f);
         LeanTween.value(recipeWindow, UpdateRecipeWindowAlpha, 1.0f, 0.0f, 0.5f).setOnComplete(() => 
         {
             GoToTrialMode();
